@@ -3,3 +3,42 @@ canvas{
     top:0;
     left:0;
 }
+section{
+    grid-column: 1/span 8;
+    font-size:25px;
+}
+
+main{
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    color:wheat;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+.title{
+    grid-column: 1 / span 8;
+    text-align: center;
+    font-size: 3em;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:wheat;
+    margin-top: 0.5em;
+}
+.intro{
+    grid-column: 1 / span 8;
+    text-align: center;
+    font-size: 1.5em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:wheat;
+    margin-top: 0.5em;
+}
+nav ul{
+    grid-column: 2 / span 6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: sticky;
+    margin-top: 1em;
+    top: 0;
+}
