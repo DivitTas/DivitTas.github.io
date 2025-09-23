@@ -21,9 +21,9 @@ renderer.render(scene, camera);
 
 //donut
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xFF6347});
+const material = new THREE.MeshStandardMaterial({ color: 0xFF6347,wireframe:true});
 const torus = new THREE.Mesh(geometry, material);
-torus.position.set(50, 0, 0);
+torus.position.set(0, 0, 10);
 scene.add(torus);
 
 
@@ -32,7 +32,7 @@ scene.add(torus);
 const sphere_geo = new THREE.SphereGeometry(3, 32, 32);
 const sphere_mat = new THREE.MeshStandardMaterial({ wireframe: false });
 const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
-sphere.position.set(-10, 0, 30);
+sphere.position.set(-10, 0, 50);
 const sphere_texture = new THREE.TextureLoader().load('/2k_neptune.jpg');
 sphere.material.map = sphere_texture;
 scene.add(sphere);
@@ -64,18 +64,17 @@ function animate(){
 }
 
 function MoveCamera(){
-    const t = document.body.getBoundingClientRect().top;   
-    sphere.rotation.x += 0.05;
-    sphere.rotation.y += 0.075;
-    sphere.rotation.z += 0.05;
+    const t = document.body.getBoundingClientRect().top;  
+    const scroll_position = -t;
+    console.log(scroll_position);
+    if(scroll_position<895){
+        sphere.rotation.x += 0.05;
+        sphere.rotation.y += 0.075;
+        sphere.rotation.z += 0.05;
 
-    camera.position.z = t * -0.040;
-    camera.rotation.z = t * -0.00002;
-    
-
-
-    
-
+        camera.position.z = scroll_position * 0.040;
+        camera.rotation.z = scroll_position * 0.00002;
+}
 }
 document.body.onscroll = MoveCamera;
 animate();
