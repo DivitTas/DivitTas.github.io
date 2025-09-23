@@ -49,7 +49,7 @@ scene.add(pointLight, ambientLight);
 //skybox like unity ;p
 const space_geo = new THREE.SphereGeometry(500, 60, 40); 
 const space_mat = new THREE.MeshBasicMaterial({
-  map: new THREE.TextureLoader().load('/2k_stars.jpg'),
+  map: new THREE.TextureLoader().load('./public/2k_stars.jpg'),
   side: THREE.BackSide 
 });
 const skysphere = new THREE.Mesh(space_geo, space_mat);
