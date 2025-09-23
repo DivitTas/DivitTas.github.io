@@ -28,14 +28,14 @@ scene.add(torus);
 
 
 
-//neptune :D
+//my face :D
 const sphere_geo = new THREE.SphereGeometry(3, 32, 32);
 const sphere_mat = new THREE.MeshStandardMaterial({ wireframe: false });
-const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
-sphere.position.set(-10, 0, 50);
-const sphere_texture = new THREE.TextureLoader().load('/2k_neptune.jpg');
-sphere.material.map = sphere_texture;
-scene.add(sphere);
+const face = new THREE.Mesh(sphere_geo, sphere_mat);
+face.position.set(-10, 0, 50);
+const sphere_texture = new THREE.TextureLoader().load('/divit.jpg');
+face.material.map = sphere_texture;
+scene.add(face);
 
 //lights
 const pointLight = new THREE.PointLight(0xffffff);
@@ -60,17 +60,16 @@ function animate(){
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 
-    sphere.rotation.x += 0.01;
+    face.rotation.y += 0.01;
 }
 
 function MoveCamera(){
     const t = document.body.getBoundingClientRect().top;  
     const scroll_position = -t;
-    console.log(scroll_position);
+    //console.log(scroll_position);
     if(scroll_position<895){
-        sphere.rotation.x += 0.05;
-        sphere.rotation.y += 0.075;
-        sphere.rotation.z += 0.05;
+
+        face.rotation.y += 0.075;
 
         camera.position.z = scroll_position * 0.040;
         camera.rotation.z = scroll_position * 0.00002;
