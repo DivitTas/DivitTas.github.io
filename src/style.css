@@ -1,3 +1,6 @@
+:root{
+    --section-spacing: 4rem;
+}
 canvas{
     position:fixed;
     top:0;
@@ -6,7 +9,10 @@ canvas{
 section{
     grid-column: 1/span 8;
     font-size:25px;
+    background-color: #1a1b26;
+    margin-bottom: var(--section-spacing);
 }
+
 
 main{
     position: absolute;
@@ -31,6 +37,31 @@ main{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:wheat;
     margin-top: 0.5em;
+    background-color: none;
+}
+.AboutMe{
+    grid-column: 1 / span 4;
+    font-size: 1.2em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:wheat;
+    margin-top: 0.5em;
+    height: 400px;
+    text-align: center;
+
+
+}
+.Contact{
+    text-align: center;
+}
+.aboutmeimg{
+    grid-column: 5 / span 4;
+}
+.Experience{
+    grid-column: 5 / span 4;
+    font-size: 1.2em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:wheat;
+    margin-top: 0.5em;
 }
 nav ul{
     grid-column: 2 / span 6;
@@ -39,6 +70,6 @@ nav ul{
     justify-content: space-evenly;
     align-items: center;
     position: sticky;
-    margin-top: 1em;
-    top: 0;
+    
+    
 }
