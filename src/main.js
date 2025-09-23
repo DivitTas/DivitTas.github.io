@@ -33,7 +33,7 @@ const sphere_geo = new THREE.SphereGeometry(3, 32, 32);
 const sphere_mat = new THREE.MeshStandardMaterial({ wireframe: false });
 const face = new THREE.Mesh(sphere_geo, sphere_mat);
 face.position.set(-10, 0, 50);
-const sphere_texture = new THREE.TextureLoader().load('/divit.jpg');
+const sphere_texture = new THREE.TextureLoader().load('../public/divit.jpg');
 face.material.map = sphere_texture;
 scene.add(face);
 
@@ -49,7 +49,7 @@ scene.add(pointLight, ambientLight);
 //skybox like unity ;p
 const space_geo = new THREE.SphereGeometry(500, 60, 40); 
 const space_mat = new THREE.MeshBasicMaterial({
-  map: new THREE.TextureLoader().load('./public/2k_stars.jpg'),
+  map: new THREE.TextureLoader().load('../public/2k_stars.jpg'),
   side: THREE.BackSide 
 });
 const skysphere = new THREE.Mesh(space_geo, space_mat);
