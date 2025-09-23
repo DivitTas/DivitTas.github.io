@@ -1,5 +1,5 @@
 :root{
-    --section-spacing: 4rem;
+    --section-spacing: 25rem;
 }
 canvas{
     position:fixed;
@@ -12,7 +12,9 @@ section{
     background-color: #1a1b26;
     margin-bottom: var(--section-spacing);
 }
-
+ul{
+    list-style: none;
+}
 
 main{
     position: absolute;
@@ -40,12 +42,13 @@ main{
     background-color: none;
 }
 .AboutMe{
-    grid-column: 1 / span 4;
+    grid-column: 1 / span 2;
     font-size: 1.2em;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:wheat;
     margin-top: 0.5em;
     height: 400px;
+    text-wrap: wrap;
     text-align: center;
 
 
@@ -54,7 +57,7 @@ main{
     text-align: center;
 }
 .aboutmeimg{
-    grid-column: 5 / span 4;
+    grid-column: 3 / span 6;
 }
 .Experience{
     grid-column: 5 / span 4;
