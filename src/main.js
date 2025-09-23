@@ -1,7 +1,6 @@
 import './style.css'
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
 
 const scene = new THREE.Scene();
 
@@ -14,15 +13,17 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(30);
-camera.position.setX(-3);
+camera.position.setZ(0);
+camera.position.setX(0);
+camera.rotation.y = Math.PI
 
 renderer.render(scene, camera);
 
 //donut
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xFF6347, wireframe: true });
+const material = new THREE.MeshStandardMaterial({ color: 0xFF6347});
 const torus = new THREE.Mesh(geometry, material);
+torus.position.set(50, 0, 0);
 scene.add(torus);
 
 
@@ -43,7 +44,7 @@ const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
 
 
-const controls = new OrbitControls(camera, renderer.domElement);
+
 
 //skybox like unity ;p
 const space_geo = new THREE.SphereGeometry(500, 60, 40); 
@@ -57,7 +58,24 @@ scene.add(skysphere);
 
 function animate(){
     requestAnimationFrame(animate);
-    controls.update();
     renderer.render(scene, camera);
+
+    sphere.rotation.x += 0.01;
 }
+
+function MoveCamera(){
+    const t = document.body.getBoundingClientRect().top;   
+    sphere.rotation.x += 0.05;
+    sphere.rotation.y += 0.075;
+    sphere.rotation.z += 0.05;
+
+    camera.position.z = t * -0.040;
+    camera.rotation.z = t * -0.00002;
+    
+
+
+    
+
+}
+document.body.onscroll = MoveCamera;
 animate();
