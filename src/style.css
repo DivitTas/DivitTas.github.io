@@ -9,7 +9,21 @@ html, body {
   max-width: 100vw;
   overflow-x: hidden;
 }
-
+.AboutMe, .Experience, .Projects, .Contact{
+    border-radius: 5px;    
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 40px;
+    color: #b6dcfe;
+    text-align: center;
+}
+.AboutMeBody, .ExperienceBody{
+    margin: 0 20px 20px 20px;
+    padding: 20px;
+    color: #e4d9ff;
+    font-size: 30px;
+    text-align: justify;
+    text-justify: inter-word;
+}
 canvas{
     position:fixed;
     top:0;
@@ -39,7 +53,7 @@ main{
     font-size: 3em;
     font-family: 'Press Start 2P', cursive;
     color: #574ae2;
-    text-shadow: 0 0 10px #574ae2, 0 0 20px #574ae2, 0 0 30px #574ae2;
+    text-shadow: 0 0 5px #574ae2, 0 0 15px #574ae2, 0 0 15px #574ae2;
     margin-top: 0.5em;
 }
 .intro{
@@ -53,12 +67,9 @@ main{
 }
 .AboutMe{
     grid-column: 1 / span 5;
-    font-size: 1.2em;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:wheat;
+    font-size: 40px;    
     margin-top: 0.5em;
     height: 400px;
-    text-wrap: wrap;
     text-align: center;
 
 
@@ -71,9 +82,6 @@ main{
 
 .Experience{
     grid-column: 5 / span 4;
-    font-size: 1.2em;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:wheat;
     margin-top: 0.5em;
 }
 nav ul{
@@ -87,4 +95,26 @@ nav ul{
     position: sticky;
     
     
+}
+a{
+    color:cornflowerblue;
+}
+a:hover{
+    color: #574ae2;
+    text-shadow: 0 0 10px #574ae2, 0 0 20px #574ae2, 0 0 30px #574ae2;
+    transition: all 0.3s ease-in-out;
+}
+a:active{
+    color: #a9b1d6;
+    text-shadow: none;
+    transition: all 0.1s ease-in-out;
+}
+a:visited{
+    color: #7aa2f7;
+}
+
+ul.ContactList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
