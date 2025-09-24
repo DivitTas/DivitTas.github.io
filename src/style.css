@@ -34,6 +34,7 @@ section{
     font-size:25px;
     background-color: #1a1b26;
     margin-bottom: var(--section-spacing);
+    scroll-margin-top: 35vh;
 }
 ul{
     list-style: none;
