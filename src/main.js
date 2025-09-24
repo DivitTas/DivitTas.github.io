@@ -68,11 +68,50 @@ function addStar(){
     scene.add(star);
 }
 Array(2000).fill().forEach(addStar);
+
+// Skills section
+//python logo
+const python_texture = new THREE.TextureLoader().load('python_logo.png');
+const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, transparent: true});
+const python_geo = new THREE.PlaneGeometry(3, 3);
+const python_logo = new THREE.Mesh(python_geo, python_mat);
+python_logo.position.set(20, 0, 50);
+scene.add(python_logo);
+
+//unity logo
+const unity_texture = new THREE.TextureLoader().load('unity_logo.jpg');
+const unity_mat = new THREE.MeshBasicMaterial({ map: unity_texture, transparent: true});
+const unity_geo = new THREE.PlaneGeometry(3, 3);
+const unity_logo = new THREE.Mesh(unity_geo, unity_mat);
+unity_logo.position.set(25, 0, 50);
+scene.add(unity_logo);
+
+//C# logo
+const csharp_texture = new THREE.TextureLoader().load('C#_logo.png');
+const csharp_mat = new THREE.MeshBasicMaterial({ map: csharp_texture, transparent: true, side:THREE.DoubleSide });
+const csharp_geo = new THREE.PlaneGeometry(3, 3);
+const csharp_logo = new THREE.Mesh(csharp_geo, csharp_mat);
+csharp_logo.position.set(30, 0, 50);
+scene.add(csharp_logo);
+
+//cpp logo
+const cpp_texture = new THREE.TextureLoader().load('cpp_logo.jpg');
+const cpp_mat = new THREE.MeshBasicMaterial({ map: cpp_texture, side:THREE.DoubleSide });
+const cpp_geo = new THREE.PlaneGeometry(3, 3);
+const cpp_logo = new THREE.Mesh(cpp_geo, cpp_mat);
+cpp_logo.position.set(35, 0, 50);
+scene.add(cpp_logo);
+
 function animate(){
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 
     face.rotation.y += 0.01;
+    //skills rotation
+    cpp_logo.rotation.y += 0.01;
+    python_logo.rotation.y += 0.01;
+    unity_logo.rotation.y += 0.01;
+    csharp_logo.rotation.y += 0.01;
 }
 
 function MoveCamera(){
@@ -85,6 +124,10 @@ function MoveCamera(){
 
         camera.position.z = scroll_position * 0.040;
         camera.rotation.z = scroll_position * 0.00002;
+        camera.rotation.y = Math.PI
+}
+    else if(scroll_position<1795){
+        camera.rotation.y = Math.PI + (scroll_position-895) * 0.0006;
 }
 }
 document.body.onscroll = MoveCamera;
