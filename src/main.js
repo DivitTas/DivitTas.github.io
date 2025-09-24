@@ -46,16 +46,28 @@ scene.add(pointLight, ambientLight);
 
 
 
-//skybox like unity ;p
-const space_geo = new THREE.SphereGeometry(500, 60, 40); 
-const space_mat = new THREE.MeshBasicMaterial({
-  map: new THREE.TextureLoader().load('2k_stars.jpg'),
-  side: THREE.BackSide 
-});
-const skysphere = new THREE.Mesh(space_geo, space_mat);
-scene.add(skysphere);
+////skybox like unity ;p
+//const space_geo = new THREE.SphereGeometry(500, 60, 40); 
+//const space_mat = new THREE.MeshBasicMaterial({
+//  map: new THREE.TextureLoader().load('8k_stars_milky_way.jpg'),
+//  side: THREE.BackSide 
+//});
+//const skysphere = new THREE.Mesh(space_geo, space_mat);
+//scene.add(skysphere);
+scene.background = new THREE.Color(0x000000);
 
-
+function addStar(){
+    const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff });
+    const star = new THREE.Mesh(geometry, material);
+    star.position.set(
+        (Math.random() - 0.5) * 1000,
+        (Math.random() - 0.5) * 1000,
+        (Math.random() - 0.5) * 1000
+    );
+    scene.add(star);
+}
+Array(2000).fill().forEach(addStar);
 function animate(){
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
