@@ -31,7 +31,7 @@ renderer.render(scene, camera);
 
 //donut
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xe8f7ee, wireframe: true, emissive: 0x00aaff, emissiveIntensity: 0.5 });
+const material = new THREE.MeshStandardMaterial({ color: 0xe8f7e, wireframe: true, emissive: 0xe8f7ee, emissiveIntensity: 0.5 });
 const torus = new THREE.Mesh(geometry, material);
 torus.position.set(0, 0, 10);
 scene.add(torus);
