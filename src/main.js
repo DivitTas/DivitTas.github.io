@@ -54,7 +54,7 @@ scene.add(pointLight, ambientLight);
 //});
 //const skysphere = new THREE.Mesh(space_geo, space_mat);
 //scene.add(skysphere);
-scene.background = new THREE.Color(0x000000);
+scene.background = new THREE.Color(0x02010a);
 
 function addStar(){
     const geometry = new THREE.SphereGeometry(0.25, 24, 24);
