@@ -1,5 +1,8 @@
 import './style.css'
 import * as THREE from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
 
 const scene = new THREE.Scene();
@@ -8,6 +11,13 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg'),
 });
+const composer = new EffectComposer(renderer);
+const renderPass = new RenderPass(scene, camera);
+composer.addPass(renderPass);
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85); 
+composer.addPass(bloomPass);
+composer.setSize(window.innerWidth, window.innerHeight);
+composer.setPixelRatio(window.devicePixelRatio);
 
 
 
@@ -21,7 +31,7 @@ renderer.render(scene, camera);
 
 //donut
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xFF6347,wireframe:true});
+const material = new THREE.MeshStandardMaterial({ color: 0xb6dcfe, wireframe: true });
 const torus = new THREE.Mesh(geometry, material);
 torus.position.set(0, 0, 10);
 scene.add(torus);
@@ -30,7 +40,7 @@ scene.add(torus);
 
 //my face :D
 const sphere_geo = new THREE.SphereGeometry(3, 32, 32);
-const sphere_mat = new THREE.MeshStandardMaterial({ wireframe: false });
+const sphere_mat = new THREE.MeshBasicMaterial({ wireframe: false });
 const face = new THREE.Mesh(sphere_geo, sphere_mat);
 face.position.set(-10, 0, 50);
 const sphere_texture = new THREE.TextureLoader().load('divit.jpg');
@@ -75,43 +85,46 @@ const python_texture = new THREE.TextureLoader().load('python_logo.png');
 const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, transparent: true});
 const python_geo = new THREE.PlaneGeometry(3, 3);
 const python_logo = new THREE.Mesh(python_geo, python_mat);
-python_logo.position.set(20, 0, 50);
+python_logo.position.set(30, -15, 20);
 scene.add(python_logo);
 
 //unity logo
 const unity_texture = new THREE.TextureLoader().load('unity_logo.jpg');
-const unity_mat = new THREE.MeshBasicMaterial({ map: unity_texture, transparent: true});
+const unity_mat = new THREE.MeshBasicMaterial({ map: unity_texture, side:THREE.DoubleSide });
 const unity_geo = new THREE.PlaneGeometry(3, 3);
 const unity_logo = new THREE.Mesh(unity_geo, unity_mat);
-unity_logo.position.set(25, 0, 50);
+unity_logo.position.set(35, -20, 27);
 scene.add(unity_logo);
 
 //C# logo
-const csharp_texture = new THREE.TextureLoader().load('C#_logo.png');
-const csharp_mat = new THREE.MeshBasicMaterial({ map: csharp_texture, transparent: true, side:THREE.DoubleSide });
-const csharp_geo = new THREE.PlaneGeometry(3, 3);
-const csharp_logo = new THREE.Mesh(csharp_geo, csharp_mat);
-csharp_logo.position.set(30, 0, 50);
-scene.add(csharp_logo);
+// const csharp_texture = new THREE.TextureLoader().load('C#_logo.png');
+// const csharp_mat = new THREE.MeshBasicMaterial({ map: csharp_texture, transparent: true, side:THREE.DoubleSide });
+// const csharp_geo = new THREE.PlaneGeometry(3, 3);
+// const csharp_logo = new THREE.Mesh(csharp_geo, csharp_mat);
+// csharp_logo.position.set(35, -20, 20);
+// scene.add(csharp_logo);
 
 //cpp logo
 const cpp_texture = new THREE.TextureLoader().load('cpp_logo.jpg');
 const cpp_mat = new THREE.MeshBasicMaterial({ map: cpp_texture, side:THREE.DoubleSide });
 const cpp_geo = new THREE.PlaneGeometry(3, 3);
 const cpp_logo = new THREE.Mesh(cpp_geo, cpp_mat);
-cpp_logo.position.set(35, 0, 50);
+cpp_logo.position.set(30, -20, 20);
 scene.add(cpp_logo);
 
 function animate(){
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    composer.render();
 
     face.rotation.y += 0.01;
     //skills rotation
     cpp_logo.rotation.y += 0.01;
     python_logo.rotation.y += 0.01;
     unity_logo.rotation.y += 0.01;
-    csharp_logo.rotation.y += 0.01;
+    //rotate donut
+    torus.rotation.x += 0.002;
+    torus.rotation.y += 0.002;
+    torus.rotation.z += 0.002;
 }
 
 function MoveCamera(){
@@ -127,7 +140,9 @@ function MoveCamera(){
         camera.rotation.y = Math.PI
 }
     else if(scroll_position<1795){
-        camera.rotation.y = Math.PI + (scroll_position-895) * 0.0006;
+        camera.rotation.y = Math.PI + (scroll_position-895) * Math.PI/1800 //rotate 90 degrees over next 900px aka the span of this animation;
+        camera.position.y = -(scroll_position-895) * 0.02;
+        camera.position.x = (scroll_position-895) * 0.02;
 }
 }
 document.body.onscroll = MoveCamera;
