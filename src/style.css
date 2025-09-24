@@ -94,21 +94,21 @@ nav ul{
     
 }
 a{
-    color:cornflowerblue;
+    color:#ffde21;
     text-decoration: none;
 }
 a:hover{
-    color: #574ae2;
-    text-shadow: 0 0 10px #574ae2, 0 0 20px #574ae2, 0 0 30px #574ae2;
+    color: #ffde21;
+    text-shadow: 0 0 10px #ffde21, 0 0 20px #ffde21, 0 0 30px #ffde21;
     transition: all 0.3s ease-in-out;
 }
 a:active{
-    color: #a9b1d6;
+    color: #ffde21;
     text-shadow: none;
     transition: all 0.1s ease-in-out;
 }
 a:visited{
-    color: #7aa2f7;
+    color: #ffde21;
 }
 
 ul.ContactList {
