@@ -37,15 +37,16 @@ main{
     grid-column: 1 / span 8;
     text-align: center;
     font-size: 3em;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color:#0d00a4ff;
+    font-family: 'Press Start 2P', cursive;
+    color: #574ae2;
+    text-shadow: 0 0 10px #574ae2, 0 0 20px #574ae2, 0 0 30px #574ae2;
     margin-top: 0.5em;
 }
 .intro{
     grid-column: 1 / span 8;
     text-align: center;
     font-size: 1.5em;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Press Start 2P', cursive;
     color:#a9b1d6;
     margin-top: 0.5em;
     background-color: none;
@@ -65,6 +66,7 @@ main{
 .Contact{
     text-align: center;
     margin-bottom: 0%;
+    font-family: 'Press Start 2P', cursive ;
 }
 
 .Experience{
@@ -77,6 +79,8 @@ main{
 nav ul{
     grid-column: 2 / span 6;
     display: flex;
+    font-family: 'Press Start 2P', cursive;
+    color:lavenderblush;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
