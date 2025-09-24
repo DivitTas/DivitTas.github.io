@@ -32,7 +32,7 @@ canvas{
 section{
     grid-column: 1/span 8;
     font-size:25px;
-    background-color: #1a1b26;
+    background-color: transparent;
     margin-bottom: var(--section-spacing);
     scroll-margin-top: 35vh;
 }
@@ -53,25 +53,21 @@ main{
     text-align: center;
     font-size: 3em;
     font-family: 'Press Start 2P', cursive;
-    color: #574ae2;
-    text-shadow: 0 0 5px #574ae2, 0 0 15px #574ae2, 0 0 15px #574ae2;
+    color: #ffde21;
     margin-top: 0.5em;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.intro{
-    grid-column: 1 / span 8;
-    text-align: center;
-    font-size: 1.5em;
-    font-family:'Press Start 2P', cursive;
-    color:#a9b1d6;
-    margin-top: 0.5em;
-    background-color: none;
-}
+
 .AboutMe{
     grid-column: 1 / span 5;
     font-size: 40px;    
-    margin-top: 0.5em;
+    margin-top: 60vh;
     height: 400px;
     text-align: center;
+
 
 
 }
@@ -99,6 +95,7 @@ nav ul{
 }
 a{
     color:cornflowerblue;
+    text-decoration: none;
 }
 a:hover{
     color: #574ae2;
