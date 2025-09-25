@@ -14,7 +14,13 @@ const renderer = new THREE.WebGLRenderer({
 const composer = new EffectComposer(renderer);
 const renderPass = new RenderPass(scene, camera);
 composer.addPass(renderPass);
-const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85); 
+const bloomParams = {
+    exposure: 1,
+    bloomStrength: 1.5,
+    bloomRadius: 0.4,
+    bloomThreshold: 0.85
+};
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), bloomParams.bloomStrength, bloomParams.bloomRadius, bloomParams.bloomThreshold);
 composer.addPass(bloomPass);
 composer.setSize(window.innerWidth, window.innerHeight);
 composer.setPixelRatio(window.devicePixelRatio);
@@ -42,7 +48,7 @@ scene.add(torus);
 const sphere_geo = new THREE.SphereGeometry(3, 32, 32);
 const sphere_mat = new THREE.MeshBasicMaterial({ wireframe: false });
 const face = new THREE.Mesh(sphere_geo, sphere_mat);
-face.position.set(-10, 0, 50);
+face.position.set(-100, 0, 60);
 const sphere_texture = new THREE.TextureLoader().load('divit.jpg');
 face.material.map = sphere_texture;
 scene.add(face);
@@ -85,7 +91,7 @@ const python_texture = new THREE.TextureLoader().load('python_logo.png');
 const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, transparent: true});
 const python_geo = new THREE.PlaneGeometry(3, 3);
 const python_logo = new THREE.Mesh(python_geo, python_mat);
-python_logo.position.set(30, -15, 20);
+python_logo.position.set(30, -25, 0);
 scene.add(python_logo);
 
 //unity logo
@@ -93,7 +99,7 @@ const unity_texture = new THREE.TextureLoader().load('unity_logo.jpg');
 const unity_mat = new THREE.MeshBasicMaterial({ map: unity_texture, side:THREE.DoubleSide });
 const unity_geo = new THREE.PlaneGeometry(3, 3);
 const unity_logo = new THREE.Mesh(unity_geo, unity_mat);
-unity_logo.position.set(35, -20, 27);
+unity_logo.position.set(30, -20, 0);
 scene.add(unity_logo);
 
 //C# logo
@@ -104,12 +110,13 @@ scene.add(unity_logo);
 // csharp_logo.position.set(35, -20, 20);
 // scene.add(csharp_logo);
 
+
 //cpp logo
 const cpp_texture = new THREE.TextureLoader().load('cpp_logo.jpg');
 const cpp_mat = new THREE.MeshBasicMaterial({ map: cpp_texture, side:THREE.DoubleSide });
 const cpp_geo = new THREE.PlaneGeometry(3, 3);
 const cpp_logo = new THREE.Mesh(cpp_geo, cpp_mat);
-cpp_logo.position.set(30, -20, 20);
+cpp_logo.position.set(30, -15, 0);
 scene.add(cpp_logo);
 
 function animate(){
@@ -130,20 +137,28 @@ function animate(){
 function MoveCamera(){
     const t = document.body.getBoundingClientRect().top;  
     const scroll_position = -t;
-    //console.log(scroll_position);
-    if(scroll_position<895){
+    console.log(scroll_position);
+    if(scroll_position<1205){
 
         face.rotation.y += 0.075;
 
         camera.position.z = scroll_position * 0.040;
         camera.rotation.z = scroll_position * 0.00002;
-        camera.rotation.y = Math.PI
+        camera.rotation.y = Math.PI;
+        face.position.x = -100 + scroll_position * 0.078;
+        unity_logo.position.z = scroll_position * 0.03;
+        python_logo.position.z = scroll_position * 0.03;
+        cpp_logo.position.z = scroll_position * 0.03;
 }
     else if(scroll_position<1795){
-        camera.rotation.y = Math.PI + (scroll_position-895) * Math.PI/1800 //rotate 90 degrees over next 900px aka the span of this animation;
-        camera.position.y = -(scroll_position-895) * 0.02;
-        camera.position.x = (scroll_position-895) * 0.02;
+        camera.rotation.y = Math.PI + (scroll_position-1205) * Math.PI/(2*(-1205 +1795)); //rotate 90 degrees over next 900px aka the span of this animation;
+        camera.position.y = -(scroll_position-1205) * 0.02;
+        camera.position.x = (scroll_position-1205) * 0.02;
+}
+    else if(scroll_position<2325){
+        camera.position.y = -(scroll_position-1205) * 0.02;
 }
 }
+
 document.body.onscroll = MoveCamera;
 animate();
