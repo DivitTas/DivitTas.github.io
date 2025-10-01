@@ -16,7 +16,7 @@ const renderPass = new RenderPass(scene, camera);
 composer.addPass(renderPass);
 const bloomParams = {
     exposure: 1,
-    bloomStrength: 1.5,
+    bloomStrength: 0.5,
     bloomRadius: 0.4,
     bloomThreshold: 0.85
 };
