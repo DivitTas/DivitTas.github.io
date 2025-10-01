@@ -5,7 +5,6 @@ html{
     scroll-behavior: smooth;
     height: var(--vh, 1vh);
     overscroll-behavior: none;
-
 }
 html, body {
   width: 100%;
