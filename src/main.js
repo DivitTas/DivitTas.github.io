@@ -136,6 +136,7 @@ function animate(){
 
 function onWindowResize() {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
+    document.documentElement.style.setProperty('--vw', `${window.innerWidth}px`);
 
 }
 window.addEventListener('resize', onWindowResize, false);
