@@ -134,6 +134,13 @@ function animate(){
     torus.rotation.z += 0.002;
 }
 
+function onWindowResize() {
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
+
+}
+window.addEventListener('resize', onWindowResize, false);
+onWindowResize();
+
 function MoveCamera(){
     const t = document.body.getBoundingClientRect().top;  
     const scroll_position = -t;
