@@ -135,9 +135,12 @@ function animate(){
 }
 
 function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    composer.setSize(window.innerWidth, window.innerHeight);
     document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
     document.documentElement.style.setProperty('--vw', `${window.innerWidth}px`);
-
 }
 window.addEventListener('resize', onWindowResize, false);
 onWindowResize();

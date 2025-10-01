@@ -10,8 +10,6 @@ html{
     width: var(--vw, 1vw);
 }
 html, body {
-  width: 100vw;
-  max-width: 100vw;
   overflow-x: hidden;
   background-color: black;
 }
