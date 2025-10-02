@@ -15,7 +15,7 @@ html, body {
 .AboutMe, .Experience, .Projects, .Contact{
     border-radius: 5px;    
     font-family: 'DotGothic16', sans-serif;
-    font-size: 40px;
+    font-size: 3vw;
     color: #ffde21;
     text-align: center;
 }
@@ -31,10 +31,10 @@ html::-webkit-scrollbar {
 
 
 .AboutMeBody, .ExperienceBody{
-    margin: 0 20px 20px 20px;
-    padding: 20px;
+    margin: 0 2vw 2vw 2vw;
+    padding: 2vw;
     color: #ffde21;
-    font-size: 30px;
+    font-size: 2vw;
     text-align: justify;
     text-justify: inter-word;
 }
@@ -45,7 +45,7 @@ canvas{
 }
 section{
     grid-column: 1/span 8;
-    font-size:25px;
+    font-size: 2vw;
     background-color: transparent;
     margin-bottom: var(--section-spacing);
     scroll-margin-top: 35vh;
@@ -65,10 +65,10 @@ main{
 .title{
     grid-column: 1 / span 8;
     text-align: center;
-    font-size: 3em;
+    font-size: 4vw;
     font-family: 'Press Start 2P', cursive;
     color: #ffde21;
-    margin-top: 0.5em;
+    margin-top: 1vw;
     height: 90vh;
     display: flex;
     flex-direction: column;
@@ -77,7 +77,7 @@ main{
 
 .AboutMe{
     grid-column: 1 / span 5;
-    font-size: 40px;    
+    font-size: 3vw;    
     margin-top: 60vh;
     height: 400px;
     text-align: center;
