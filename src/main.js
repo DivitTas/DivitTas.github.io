@@ -89,7 +89,7 @@ Array(2000).fill().forEach(addStar);
 // Skills section
 //python logo
 const python_texture = new THREE.TextureLoader().load('python_logo.png');
-const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, transparent: true});
+const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, side:THREE.DoubleSide });
 const python_geo = new THREE.PlaneGeometry(3, 3);
 const python_logo = new THREE.Mesh(python_geo, python_mat);
 python_logo.position.set(30, -25, 0);
@@ -119,6 +119,7 @@ const cpp_geo = new THREE.PlaneGeometry(3, 3);
 const cpp_logo = new THREE.Mesh(cpp_geo, cpp_mat);
 cpp_logo.position.set(30, -15, 0);
 scene.add(cpp_logo);
+
 
 function animate(){
     requestAnimationFrame(animate);
@@ -170,6 +171,9 @@ function MoveCamera(){
     else if(scroll_position<2325){
         camera.position.y = -(scroll_position-1205) * 0.02;
 }
+    else if(scroll_position>=2355){ 
+        camera.position.y = -(scroll_position-1205) * 0.02;
+    }
 }
 
 document.body.onscroll = MoveCamera;
