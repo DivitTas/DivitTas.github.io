@@ -8,7 +8,7 @@ html{
 
 }
 html, body {
-  width: 100%;
+  width: vw;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -57,7 +57,7 @@ ul{
 main{
     position: absolute;
     z-index: 99;
-    width: 100%;
+    width: 100vw;
     color: #ffde21;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
