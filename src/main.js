@@ -11,6 +11,7 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg'),
 });
+renderer.setClearColor(0x000000, 0); // Set background color to black
 const composer = new EffectComposer(renderer);
 const renderPass = new RenderPass(scene, camera);
 composer.addPass(renderPass);
@@ -88,7 +89,7 @@ Array(2000).fill().forEach(addStar);
 // Skills section
 //python logo
 const python_texture = new THREE.TextureLoader().load('python_logo.png');
-const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, transparent: true});
+const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, side:THREE.DoubleSide });
 const python_geo = new THREE.PlaneGeometry(3, 3);
 const python_logo = new THREE.Mesh(python_geo, python_mat);
 python_logo.position.set(30, -25, 0);
@@ -134,6 +135,17 @@ function animate(){
     torus.rotation.z += 0.002;
 }
 
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    composer.setSize(window.innerWidth, window.innerHeight);
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
+    document.documentElement.style.setProperty('--vw', `${window.innerWidth}px`);
+}
+window.addEventListener('resize', onWindowResize, false);
+onWindowResize();
+
 function MoveCamera(){
     const t = document.body.getBoundingClientRect().top;  
     const scroll_position = -t;
@@ -158,6 +170,9 @@ function MoveCamera(){
     else if(scroll_position<2325){
         camera.position.y = -(scroll_position-1205) * 0.02;
 }
+    else if(scroll_position>=2355){ 
+        camera.position.y = -(scroll_position-1205) * 0.02;
+    }
 }
 
 document.body.onscroll = MoveCamera;
