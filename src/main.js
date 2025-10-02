@@ -136,6 +136,7 @@ function animate(){
     torus.rotation.z += 0.002;
 }
 
+
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
