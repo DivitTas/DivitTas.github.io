@@ -137,12 +137,15 @@ function animate(){
 }
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    composer.setSize(window.innerWidth, window.innerHeight);
-    document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
-    document.documentElement.style.setProperty('--vw', `${window.innerWidth}px`);
+    renderer.setSize(width, height);
+    composer.setSize(width, height);
+    document.documentElement.style.setProperty('--vh', `${height}px`);
+    document.documentElement.style.setProperty('--vw', `${width}px`);
 }
 window.addEventListener('resize', onWindowResize, false);
 onWindowResize();
