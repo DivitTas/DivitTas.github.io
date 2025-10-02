@@ -132,3 +132,17 @@ ul.ContactList {
     flex-direction: column;
     gap: 2rem;
 }
+.Projects{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2rem;
+}
+.Projects h3{
+    grid-column: 1 / span 8;
+}
+.Project1{
+    grid-column: 1 / span 4;
+}
+.Project2{
+    grid-column: 5 / span 4;
+}

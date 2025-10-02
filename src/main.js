@@ -120,6 +120,7 @@ const cpp_logo = new THREE.Mesh(cpp_geo, cpp_mat);
 cpp_logo.position.set(30, -15, 0);
 scene.add(cpp_logo);
 
+
 function animate(){
     requestAnimationFrame(animate);
     composer.render();
