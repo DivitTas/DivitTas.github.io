@@ -26,8 +26,6 @@ composer.addPass(bloomPass);
 composer.setSize(window.innerWidth, window.innerHeight);
 composer.setPixelRatio(window.devicePixelRatio);
 
-
-
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 camera.position.setZ(0);
@@ -61,16 +59,6 @@ const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
 
 
-
-
-////skybox like unity ;p
-//const space_geo = new THREE.SphereGeometry(500, 60, 40); 
-//const space_mat = new THREE.MeshBasicMaterial({
-//  map: new THREE.TextureLoader().load('8k_stars_milky_way.jpg'),
-//  side: THREE.BackSide 
-//});
-//const skysphere = new THREE.Mesh(space_geo, space_mat);
-//scene.add(skysphere);
 scene.background = new THREE.Color(0x02010a);
 
 function addStar(){
@@ -89,11 +77,18 @@ Array(2000).fill().forEach(addStar);
 // Skills section
 //python logo
 const python_texture = new THREE.TextureLoader().load('python_logo.png');
-const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, side:THREE.DoubleSide });
+const python_mat = new THREE.MeshBasicMaterial({ map: python_texture, transparent: true });
 const python_geo = new THREE.PlaneGeometry(3, 3);
 const python_logo = new THREE.Mesh(python_geo, python_mat);
 python_logo.position.set(30, -25, 0);
 scene.add(python_logo);
+const python_texture2 = new THREE.TextureLoader().load('python_logo.png');
+const python_mat2 = new THREE.MeshBasicMaterial({ map: python_texture2, transparent: true });
+const python_geo2 = new THREE.PlaneGeometry(3, 3);
+const python_logo2 = new THREE.Mesh(python_geo2, python_mat2);
+python_logo2.position.set(30, -25, 0);
+python_logo2.rotation.y = Math.PI; //flip the logo  
+scene.add(python_logo2);
 
 //unity logo
 const unity_texture = new THREE.TextureLoader().load('unity_logo.jpg');
@@ -102,14 +97,6 @@ const unity_geo = new THREE.PlaneGeometry(3, 3);
 const unity_logo = new THREE.Mesh(unity_geo, unity_mat);
 unity_logo.position.set(30, -20, 0);
 scene.add(unity_logo);
-
-//C# logo
-// const csharp_texture = new THREE.TextureLoader().load('C#_logo.png');
-// const csharp_mat = new THREE.MeshBasicMaterial({ map: csharp_texture, transparent: true, side:THREE.DoubleSide });
-// const csharp_geo = new THREE.PlaneGeometry(3, 3);
-// const csharp_logo = new THREE.Mesh(csharp_geo, csharp_mat);
-// csharp_logo.position.set(35, -20, 20);
-// scene.add(csharp_logo);
 
 
 //cpp logo
@@ -129,6 +116,7 @@ function animate(){
     //skills rotation
     cpp_logo.rotation.y += 0.01;
     python_logo.rotation.y += 0.01;
+    python_logo2.rotation.y += 0.01;
     unity_logo.rotation.y += 0.01;
     //rotate donut
     torus.rotation.x += 0.002;
@@ -165,10 +153,11 @@ function MoveCamera(){
         face.position.x = -100 + scroll_position * 0.078;
         unity_logo.position.z = scroll_position * 0.03;
         python_logo.position.z = scroll_position * 0.03;
+        python_logo2.position.z = scroll_position * 0.03;
         cpp_logo.position.z = scroll_position * 0.03;
 }
     else if(scroll_position<1795){
-        camera.rotation.y = Math.PI + (scroll_position-1205) * Math.PI/(2*(-1205 +1795)); //rotate 90 degrees over next 900px aka the span of this animation;
+        camera.rotation.y = Math.PI + (scroll_position-1205) * Math.PI/(2*(-1205 +1795)); //rotate 90 degrees over next 900px aka the span of this animation
         camera.position.y = -(scroll_position-1205) * 0.02;
         camera.position.x = (scroll_position-1205) * 0.02;
 }
