@@ -1,17 +1,17 @@
 # 🌐 itsdivit.me — My Personal Website
 
-Hey there 👋 I'm **Divit**, a student who loves physics, math, computers, and occasionally screaming high notes when code refuses to run.  
+Hello there! I'm **Divit**, a student who loves physics, math and computers.   
 This repo hosts the code for my personal website — [itsdivit.me](https://itsdivit.me).
 
 ---
 
-## 🚀 What’s this site about?
+##  What’s this site about?
 
-It’s basically **me on the internet** — a portfolio, playground, and occasional experiment in chaos.  
+It’s basically **me on the internet** — a portfolio and playground.  
 You’ll find:
 -  Projects I’ve worked on (games, AI stuff, physics simulations, etc.)
 -  Things I build for fun
--  My thoughts, write-ups, and random obsessions
+-  My thoughts and write-ups.
 
 ---
 
