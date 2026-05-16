@@ -4,6 +4,13 @@ import CafeIllustration from '../components/CafeIllustration.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import CommitTicker from '../components/CommitTicker';
 import { GAME, PROJECTS, DEVLOG, COMMITS } from '../data/index';
+import { fetchRecentCommits } from '../lib/github';
+
+let commits = COMMITS;
+try {
+  const live = await fetchRecentCommits('DivitTas', 6);
+  if (live.length > 0) commits = live;
+} catch {}
 ---
 
 <Base
@@ -76,7 +83,7 @@ import { GAME, PROJECTS, DEVLOG, COMMITS } from '../data/index';
   <section class="section page-content">
     <div class="section-grid section-grid--center">
       <span class="slate-label">02 — TICKER</span>
-      <CommitTicker commits={COMMITS} client:load />
+      <CommitTicker commits={commits} client:load />
     </div>
   </section>
 
