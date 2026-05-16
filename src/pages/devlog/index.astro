@@ -1,0 +1,115 @@
+---
+import Base from '../../layouts/Base.astro';
+import CafeIllustration from '../../components/CafeIllustration.astro';
+import DevlogHub from '../../components/DevlogHub';
+import { GAME, DEVLOG } from '../../data/index';
+---
+
+<Base
+  title="Devlog — Catastrophe Cafe"
+  description="Monthly development log for Catastrophe Cafe, a 2–4 player co-op cat cafe game."
+>
+  <div class="page-content" style="padding-top: var(--s-8); padding-bottom: var(--s-9);">
+    <!-- Title block -->
+    <div class="section-grid" style="margin-bottom: 40px;">
+      <span class="slate-label">03 — DEVLOG</span>
+      <div>
+        <span class="coord-faint" style="display: block; margin-bottom: 8px;">
+          {GAME.codename} · LIVE TRANSMISSION · {GAME.classification}
+        </span>
+        <h1 class="devlog-title">{GAME.title}</h1>
+        <p class="devlog-blurb">{GAME.longBlurb}</p>
+        <div class="badge-row">
+          <span class="badge badge--quantum">{GAME.players}</span>
+          <span class="badge badge--quantum">{GAME.engine}</span>
+          <span class="badge badge--helios">{GAME.version}</span>
+          <span class="badge badge--default">{GAME.build}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero plate -->
+    <div class="section-grid" style="margin-bottom: 56px;">
+      <span class="slate-label">—</span>
+      <div class="hero-plate">
+        <CafeIllustration />
+      </div>
+    </div>
+
+    <!-- Entries (interactive) -->
+    <DevlogHub entries={DEVLOG} client:load />
+  </div>
+</Base>
+
+<style>
+  .section-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+  }
+
+  .slate-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--star-mute);
+    padding-top: 4px;
+  }
+
+  .coord-faint {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+  }
+
+  .devlog-title {
+    font-size: clamp(48px, 7vw, 84px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    color: var(--star);
+    line-height: 1;
+  }
+
+  .devlog-blurb {
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--star-dim);
+    max-width: 720px;
+  }
+
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+
+  .badge {
+    display: inline-flex;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .badge--quantum { background: rgba(94,228,255,0.12); color: var(--quantum); }
+  .badge--helios  { background: color-mix(in oklab, var(--helios) 14%, transparent); color: var(--helios); }
+  .badge--default { background: var(--orbit); color: var(--star-mute); }
+
+  .hero-plate {
+    border: var(--border-hair);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: var(--nebula);
+  }
+
+  @media (max-width: 640px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .slate-label { display: none; }
+  }
+</style>

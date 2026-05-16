@@ -1,0 +1,28 @@
+---
+num: "005"
+title: "30 cats, 30 personalities, one save file"
+date: "2026.03.01"
+minutes: 6
+tags: ["design", "cats"]
+weekOf: "WEEK 37"
+summary: "Designing cats as small state machines. Plus, why one of them refuses to drink from a bowl."
+---
+
+Designing cats as small state machines. Plus, why one of them refuses to drink from a bowl.
+
+## The architecture
+
+Each cat is a small state machine with four base states: Wandering, Curious, Demanding, and Napping. State transitions are driven by a combination of environment (loud noise? fire?) and personality weights.
+
+Personality is three floats: curiosity, grumpiness, and hunger urgency. These don't change what the states *do* — they change how quickly the cat moves between them and how it behaves within each state.
+
+## The cat that won't drink from bowls
+
+Cat #17 — internally called "Biscuit" — has a curiosity weight of 0.9 and a grumpiness weight of 0.8. In testing, these values interacted in a way we didn't anticipate: Biscuit would approach a water bowl, sniff it (Curious), decide it was unacceptable (Grumpy), and walk away. Every time.
+
+We kept it. Some bugs are features.
+
+<div class="footnote-block">
+  <span class="coord tone-quantum">FOOTNOTE · 005.A</span>
+  <em class="accent-italic">"A cat with opinions is more interesting than a cat without them, even if the opinion is 'no.'"</em>
+</div>

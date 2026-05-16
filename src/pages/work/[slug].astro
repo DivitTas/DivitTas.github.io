@@ -1,0 +1,318 @@
+---
+import Base from '../../layouts/Base.astro';
+import CafeIllustration from '../../components/CafeIllustration.astro';
+import PlateThumb from '../../components/PlateThumb.astro';
+import { PROJECTS } from '../../data/index';
+
+export async function getStaticPaths() {
+  return PROJECTS.map(p => ({
+    params: { slug: p.id },
+    props: { project: p },
+  }));
+}
+
+const { project: p } = Astro.props;
+
+const toneMap: Record<string, string> = {
+  helios: 'var(--helios)',
+  signal: 'var(--signal)',
+  quantum: 'var(--quantum)',
+};
+const badgeBgMap: Record<string, string> = {
+  helios: 'color-mix(in oklab, var(--helios) 14%, transparent)',
+  signal: 'rgba(109,255,174,0.12)',
+  quantum: 'rgba(94,228,255,0.12)',
+};
+
+const longDesc: Record<string, { what: string; how: string }> = {
+  'cat-cafe': {
+    what: 'Catastrophe Cafe is a 2–4 player online co-op game about running a cat cafe at the edge of the galaxy. Customers want coffee, cats want chaos, and the fire extinguisher is in a slightly different place every shift. We are making the co-op kitchen game we always wanted, with cats, and with very little dignity.',
+    how: 'Currently v0.3.4. The kitchen feels good. Cat AI is in its fourth pathfinding rewrite. The netcode mostly survives my friends jumping on the same bowl at the same time. Aiming for an early playtest later this year.',
+  },
+  'agneepath': {
+    what: 'A 2D action platformer built in roughly 24 hours for a personal jam. One level, one boss, hand-tuned physics, and a hard final encounter. Shipped on itch.io the next morning.',
+    how: 'Shipped, archived, and weirdly proud of it. I learned more about scope in those 24 hours than in the prior six months. The boss still kills me on stream.',
+  },
+};
+
+const desc = longDesc[p.id];
+const sourceMap: Record<string, string> = {
+  'cat-cafe': 'closed beta',
+  'agneepath': 'itch.io',
+};
+const source = sourceMap[p.id] || 'github';
+---
+
+<Base
+  title={`${p.title} — Divit Tasgaonkar`}
+  description={p.blurb}
+>
+  <div class="page-content" style="padding-top: 40px; padding-bottom: var(--s-9);">
+    <a href="/work" class="back-link">← Back to work</a>
+
+    <div class="section-grid" style="margin-top: 28px;">
+      <span class="slate-label">02.{p.code}</span>
+      <div>
+        <span class="coord-faint" style="display: block; margin-bottom: 6px;">{p.year} · PROJECT DOSSIER</span>
+        <h1 class="project-title">{p.title}</h1>
+        <p class="project-blurb">{p.blurb}</p>
+        <div class="tag-row">
+          {p.tags.map(t => (
+            <span
+              class="badge"
+              style={`background: ${badgeBgMap[t.tone] || 'var(--orbit)'}; color: ${toneMap[t.tone] || 'var(--star-mute)'};`}
+            >
+              {t.label}
+            </span>
+          ))}
+        </div>
+        {p.id === 'cat-cafe' && (
+          <div style="margin-top: 22px;">
+            <a href="/devlog" class="btn-primary">Read the live devlog →</a>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Plate -->
+    <div class="section-grid" style="margin-top: 56px;">
+      <span class="slate-label">02 — PLATE</span>
+      <div class="plate-wrapper">
+        {p.id === 'cat-cafe' ? <CafeIllustration /> : <PlateThumb variant={p.thumb} title={p.title} />}
+        <span class="plate-label-left coord-faint">PLATE 02.A</span>
+        <span class="plate-label-right coord-faint">{p.title.toUpperCase()}</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    {desc && (
+      <div class="section-grid" style="margin-top: 56px;">
+        <span class="slate-label">03 — LOG</span>
+        <div class="project-body">
+          <h3>What it is</h3>
+          <p>{desc.what}</p>
+          <h3 style="margin-top: 32px;">How it's going</h3>
+          <p>{desc.how}</p>
+          <div class="footnote-block">
+            <span class="coord-quantum">FOOTNOTE · 03.A</span>
+            <em class="accent-italic">"Every game I have ever finished is a game I almost cancelled in week three."</em>
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- Meta table -->
+    <div class="section-grid" style="margin-top: 56px;">
+      <span class="slate-label">04 — META</span>
+      <div class="meta-table">
+        <div class="meta-cell">
+          <span class="coord-faint meta-key">Status</span>
+          <span class="meta-value" style={p.status === 'IN_DEV' ? 'color: var(--helios);' : 'color: var(--star);'}>
+            {p.status.replace('_', ' ')}
+          </span>
+        </div>
+        <div class="meta-cell">
+          <span class="coord-faint meta-key">Year</span>
+          <span class="meta-value">{p.year}</span>
+        </div>
+        <div class="meta-cell">
+          <span class="coord-faint meta-key">Stack</span>
+          <span class="meta-value">{p.tags.map(t => t.label).join(' · ')}</span>
+        </div>
+        <div class="meta-cell" style="border-right: none;">
+          <span class="coord-faint meta-key">Source</span>
+          <span class="meta-value">{source}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .section-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+  }
+
+  .slate-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--star-mute);
+    padding-top: 4px;
+  }
+
+  .coord-faint {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+  }
+
+  .coord-quantum {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--quantum);
+    margin-bottom: 6px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-mute);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .back-link:hover { color: var(--star); border-bottom: none; }
+
+  .project-title {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--star);
+    line-height: 1;
+  }
+
+  .project-blurb {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--star-dim);
+    max-width: 720px;
+  }
+
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-flex;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: var(--r-sm);
+    background: var(--helios);
+    color: #14141a;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    border-bottom: none;
+    transition: background var(--dur-fast) var(--ease-out);
+    line-height: 1;
+  }
+  .btn-primary:hover { background: var(--helios-deep); border-bottom: none; color: #14141a; }
+
+  .plate-wrapper {
+    border: var(--border-hair);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    position: relative;
+    background: var(--nebula);
+  }
+
+  .plate-label-left {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+  }
+  .plate-label-right {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+  }
+
+  .project-body {
+    max-width: 720px;
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    color: var(--star-dim);
+  }
+
+  .project-body h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--fs-h3);
+    color: var(--star);
+    margin-bottom: 8px;
+  }
+
+  .footnote-block {
+    margin-top: 28px;
+    padding: 16px 18px;
+    background: var(--deep-space);
+    border: var(--border-hair);
+    border-radius: 8px;
+  }
+
+  .accent-italic {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-size: var(--fs-body);
+    color: var(--star);
+    line-height: 1.55;
+  }
+
+  .meta-table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: var(--border-hair);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .meta-cell {
+    padding: 16px;
+    border-right: var(--border-dash);
+    background: var(--deep-space);
+  }
+
+  .meta-key {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .meta-value {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--star);
+  }
+
+  @media (max-width: 768px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .slate-label { display: none; }
+    .meta-table { grid-template-columns: repeat(2, 1fr); }
+    .meta-cell:nth-child(2) { border-right: none; }
+  }
+
+  @media (max-width: 480px) {
+    .meta-table { grid-template-columns: 1fr; }
+    .meta-cell { border-right: none; border-bottom: var(--border-dash); }
+  }
+</style>

@@ -1,0 +1,149 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('notes');
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, date, minutes, summary } = entry.data;
+---
+
+<Base
+  title={`${title} — Divit Tasgaonkar`}
+  description={summary}
+>
+  <div class="page-content" style="padding-top: 40px; padding-bottom: var(--s-9);">
+    <a href="/notes" class="back-link">← Back to notes</a>
+
+    <div class="section-grid" style="margin-top: 28px;">
+      <span class="slate-label">04 — NOTE</span>
+      <div>
+        <span class="coord-faint" style="display: block; margin-bottom: 6px;">
+          {date} · {minutes} MIN READ
+        </span>
+        <h1 class="entry-title">{title}</h1>
+      </div>
+    </div>
+
+    <div class="section-grid" style="margin-top: 48px;">
+      <span class="slate-label">BODY</span>
+      <article class="entry-body">
+        <p class="entry-lede">{summary}</p>
+        <Content />
+      </article>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .section-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+  }
+
+  .slate-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--star-mute);
+    padding-top: 4px;
+  }
+
+  .coord-faint {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-mute);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .back-link:hover { color: var(--star); border-bottom: none; }
+
+  .entry-title {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: var(--star);
+    line-height: 1.05;
+  }
+
+  .entry-body {
+    max-width: 680px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--star-dim);
+  }
+
+  .entry-lede {
+    font-size: 19px;
+    color: var(--star);
+    margin-bottom: 32px;
+  }
+
+  .entry-body :global(h2),
+  .entry-body :global(h3) {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--fs-h3);
+    color: var(--star);
+    margin-top: 36px;
+    margin-bottom: 12px;
+  }
+
+  .entry-body :global(p) {
+    margin-bottom: 16px;
+  }
+
+  .entry-body :global(.footnote-block) {
+    margin-top: 28px;
+    padding: 16px 18px;
+    background: var(--deep-space);
+    border: var(--border-hair);
+    border-radius: 8px;
+  }
+
+  .entry-body :global(.coord) {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .entry-body :global(.tone-quantum) { color: var(--quantum); }
+
+  .entry-body :global(.accent-italic) {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-size: var(--fs-body);
+    color: var(--star);
+    line-height: 1.55;
+    display: block;
+    margin-top: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .slate-label { display: none; }
+  }
+</style>

@@ -1,0 +1,250 @@
+/* ============================================================
+   Divit's World — Design Tokens
+   Space/tech mission-dossier theme.
+   ============================================================ */
+
+/* Google Fonts — Space Grotesk (display+body), JetBrains Mono (code/labels),
+   Newsreader italic (rare accent for pull quotes / cosmic asides). */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,500&display=swap');
+
+:root {
+  /* ---------- COLOR — Void & Surfaces ----------
+     The portfolio is dark-first. Surfaces step up in lightness very slightly,
+     never to "gray" — they keep a cool 240° hue so they read as deep space. */
+  --void:        #06070d;   /* page background — under everything */
+  --deep-space:  #0c0e18;   /* primary surface (cards, panels) */
+  --nebula:      #141828;   /* raised surface (hover, modals) */
+  --orbit:       #1f2438;   /* highest surface / pressed states */
+  --hairline:    #232841;   /* 1px borders on dark */
+  --rule:        #2e345080; /* dashed/dotted technical rules */
+
+  /* ---------- COLOR — Foreground ----------
+     Star is intentionally warm cream — like aged mission patches & blueprint paper.
+     Avoid pure #FFF anywhere on dark surfaces. */
+  --star:        #f0ead6;   /* primary text, ~95% L cream */
+  --star-dim:    #c7c2b3;   /* secondary text */
+  --star-mute:   #8d8a7e;   /* tertiary / annotations */
+  --star-faint:  #5a5849;   /* disabled / coordinate labels */
+
+  /* ---------- COLOR — Signals ----------
+     One signature warm (helios) + one cool (quantum). Plasma & flare are
+     used sparingly for status. Signal is reserved for terminal/code. */
+  --helios:      #ffb347;   /* SIGNATURE warm — solar amber, CTAs, links on dark */
+  --helios-deep: #d68a1f;   /* hover/pressed for helios */
+  --quantum:     #5ee4ff;   /* cool accent — labels, technical callouts */
+  --plasma:      #ff5e9c;   /* rare; system status, "live" indicators */
+  --signal:      #6dffae;   /* terminal green — reserved for code/CLI */
+  --flare:       #ff5b5b;   /* error / warning */
+
+  /* ---------- COLOR — Light Mode (rare; used for printed-doc pages) ----------
+     The site stays dark. These exist for the occasional cream-paper section. */
+  --paper:       #efe9d6;   /* warm cream — old paper */
+  --paper-2:     #e3dcc4;   /* paper shadow */
+  --ink:         #14141a;   /* near-black for paper backgrounds */
+  --ink-mute:    #4a4a55;
+
+  /* ---------- TYPE — Families ---------- */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  --font-accent:  'Newsreader', ui-serif, Georgia, serif; /* italic only */
+
+  /* ---------- TYPE — Scale ----------
+     A mostly-quiet scale with one dramatic display size for hero moments.
+     Letter-spacing tightens at display sizes; opens up for ALL-CAPS labels. */
+  --fs-mega:    clamp(64px, 9vw, 144px);  /* "DIVIT" hero */
+  --fs-h1:      clamp(40px, 5vw, 64px);
+  --fs-h2:      clamp(28px, 3vw, 40px);
+  --fs-h3:      22px;
+  --fs-h4:      18px;
+  --fs-body:    16px;
+  --fs-sm:      14px;
+  --fs-xs:      12px;
+  --fs-micro:   11px;   /* technical labels, coordinates */
+
+  --lh-tight:   1.02;
+  --lh-snug:    1.18;
+  --lh-body:    1.55;
+  --lh-loose:   1.7;
+
+  --tracking-mega:   -0.04em;
+  --tracking-tight:  -0.015em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.02em;
+  --tracking-caps:   0.16em;   /* ALL-CAPS labels */
+  --tracking-mono:   0.04em;   /* mono uppercase coordinates */
+
+  /* ---------- SPACING ----------
+     4px base. Most layouts use 16/24/32/48/64. */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  /* ---------- RADII ----------
+     Restrained. Most cards use 8–12. Pills use full. Buttons 6.
+     Mission-patch elements use 2 (almost square, with a hairline). */
+  --r-xs:   2px;
+  --r-sm:   6px;
+  --r-md:   10px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-full: 9999px;
+
+  /* ---------- BORDERS ----------
+     Brand uses hairlines, never thick borders. Technical-drawing dashed/dotted rules
+     are used to evoke schematic diagrams. */
+  --border-hair:   1px solid var(--hairline);
+  --border-dash:   1px dashed var(--rule);
+  --border-dot:    1px dotted var(--rule);
+  --border-helios: 1px solid var(--helios);
+  --border-quantum:1px solid color-mix(in oklab, var(--quantum) 60%, transparent);
+
+  /* ---------- SHADOWS ----------
+     Avoid heavy drop shadows. Use a soft outer glow (helios or quantum) on focus.
+     Cards rely on hairline borders + a tiny inner highlight instead of shadows. */
+  --shadow-card:   0 1px 0 rgba(255,255,255,0.03) inset, 0 0 0 1px var(--hairline);
+  --shadow-pop:    0 24px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px var(--hairline);
+  --glow-helios:   0 0 0 1px color-mix(in oklab, var(--helios) 50%, transparent), 0 0 24px -4px color-mix(in oklab, var(--helios) 40%, transparent);
+  --glow-quantum:  0 0 0 1px color-mix(in oklab, var(--quantum) 50%, transparent), 0 0 24px -4px color-mix(in oklab, var(--quantum) 40%, transparent);
+
+  /* ---------- MOTION ---------- */
+  --ease-out:     cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-orbit:   cubic-bezier(0.45, 0.05, 0.55, 0.95); /* gentle, satellite-like */
+  --dur-fast:     140ms;
+  --dur-base:     220ms;
+  --dur-slow:     420ms;
+  --dur-orbit:    32s;       /* full rotation for orbital decorations */
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   These map raw tokens onto the actual elements used in markup.
+   ============================================================ */
+
+html, body {
+  background: var(--void);
+  color: var(--star);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tracking-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--star);
+  margin: 0;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--star);
+  margin: 0;
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-normal);
+  color: var(--star);
+  margin: 0;
+}
+
+h4, .h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  color: var(--star);
+  margin: 0;
+}
+
+.mega {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-mega);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-mega);
+  color: var(--star);
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--star-dim);
+  margin: 0;
+}
+
+.small  { font-size: var(--fs-sm); color: var(--star-mute); }
+.micro  { font-size: var(--fs-micro); color: var(--star-mute); }
+
+/* All-caps label — used throughout for mission-control feel */
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--star-mute);
+}
+
+/* Coordinate annotation — for technical-drawing accents */
+.coord {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--star-faint);
+  text-transform: uppercase;
+}
+
+/* Inline italic accent — Newsreader. Use sparingly. */
+.accent-italic {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--star);
+}
+
+code, kbd, samp, pre, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  letter-spacing: var(--tracking-mono);
+  color: var(--signal);
+}
+
+a {
+  color: var(--helios);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in oklab, var(--helios) 50%, transparent);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--helios-deep); border-bottom-color: var(--helios-deep); }
+
+hr {
+  border: 0;
+  border-top: var(--border-dash);
+  margin: var(--s-5) 0;
+}
+
+::selection { background: var(--helios); color: var(--void); }

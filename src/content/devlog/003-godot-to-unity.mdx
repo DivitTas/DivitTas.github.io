@@ -1,0 +1,30 @@
+---
+num: "003"
+title: "Switching the prototype from Godot to Unity"
+date: "2026.01.20"
+minutes: 8
+tags: ["tech", "tools"]
+weekOf: "WEEK 30"
+summary: "I love Godot. I also needed multiplayer to just work. The unsentimental version of that decision."
+---
+
+I love Godot. I also needed multiplayer to just work. The unsentimental version of that decision.
+
+## Why Godot first
+
+I started in Godot 4 because I know it well and the iteration speed is excellent for prototyping. The first two months of Catastrophe Cafe were built there: basic cat movement, a simple kitchen layout, the core interaction model.
+
+## Why we switched
+
+Multiplayer. Godot's high-level networking is good, but it requires more manual work than I had bandwidth for while also designing the game. Unity's Netcode for GameObjects — imperfect as it is — has more solved problems and more documentation for the specific patterns I needed (object ownership, state synchronization, latency compensation).
+
+The switch took two weeks. Most systems ported cleanly. The cat personalities required a full rewrite because of how Godot's signals differ from Unity's event system.
+
+## What I miss
+
+Gdscript. Just being honest.
+
+<div class="footnote-block">
+  <span class="coord tone-quantum">FOOTNOTE · 003.A</span>
+  <em class="accent-italic">"The right tool is the one that lets you finish the thing. Sentiment is for after you ship."</em>
+</div>

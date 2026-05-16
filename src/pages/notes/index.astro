@@ -1,0 +1,172 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { NOTES } from '../../data/index';
+
+const entries = await getCollection('notes');
+---
+
+<Base
+  title="Notes — Divit Tasgaonkar"
+  description="Long-form writing on game development, design, and the occasional detour."
+>
+  <div class="page-content" style="padding-top: var(--s-8); padding-bottom: var(--s-9);">
+    <!-- Header -->
+    <div class="section-header section-grid">
+      <span class="slate-label">04 — NOTES</span>
+      <div>
+        <span class="coord-faint" style="display: block; margin-bottom: 6px;">
+          Long-form · {entries.length} entries
+        </span>
+        <h1>Things I've thought about long enough to write down</h1>
+      </div>
+    </div>
+
+    <!-- Notes list -->
+    <div class="section-grid">
+      <div>
+        <span class="coord-faint" style="display: block; margin-bottom: 8px;">YEAR</span>
+        <div class="year-filter">
+          <span class="year-active">All</span>
+          <span class="year-inactive">2026</span>
+          <span class="year-inactive">2025</span>
+        </div>
+      </div>
+      <div class="notes-list">
+        {NOTES.map(n => {
+          const entry = entries.find(e => e.data.title === n.title);
+          const href = entry ? `/notes/${entry.id}` : '#';
+          return (
+            <a href={href} class="note-row">
+              <span class="coord-faint">{n.date}</span>
+              <div class="note-content">
+                <div class="note-title">{n.title}</div>
+                <div class="note-summary">{n.summary}</div>
+              </div>
+              <span class="note-readtime">{n.minutes} MIN ↗</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .section-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+    align-items: baseline;
+  }
+
+  .section-header h1 {
+    font-size: var(--fs-h2);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    color: var(--star);
+  }
+
+  .slate-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--star-mute);
+    padding-top: 4px;
+  }
+
+  .coord-faint {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+  }
+
+  .year-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .year-active, .year-inactive {
+    font-size: 13px;
+    cursor: default;
+  }
+  .year-active {
+    color: var(--star);
+    border-bottom: 1px dotted var(--helios);
+    padding-bottom: 1px;
+    width: fit-content;
+  }
+  .year-inactive {
+    color: var(--star-mute);
+    width: fit-content;
+  }
+
+  .notes-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .note-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: var(--border-dash);
+    text-decoration: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: inherit;
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .note-row:hover .note-title { color: var(--helios); }
+  .note-row:hover .note-readtime { color: var(--helios); }
+
+  .note-content {}
+
+  .note-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--star);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .note-summary {
+    margin-top: 4px;
+    font-size: var(--fs-sm);
+    color: var(--star-mute);
+    line-height: 1.55;
+  }
+
+  .note-readtime {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+    white-space: nowrap;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  @media (max-width: 768px) {
+    .note-row { grid-template-columns: 80px 1fr auto; gap: 12px; }
+  }
+
+  @media (max-width: 640px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .slate-label { display: none; }
+    .note-row { grid-template-columns: 1fr auto; }
+    .note-row .coord-faint { display: none; }
+  }
+</style>
