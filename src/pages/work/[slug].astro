@@ -31,7 +31,7 @@ const longDesc: Record<string, { what: string; how: string }> = {
   },
   'agneepath': {
     what: 'A 2D action platformer built in roughly 24 hours for a personal jam. One level, one boss, hand-tuned physics, and a hard final encounter. Shipped on itch.io the next morning.',
-    how: 'Shipped, archived, and weirdly proud of it. I learned more about scope in those 24 hours than in the prior six months. The boss still kills me on stream.',
+    how: 'Shipped, archived, and weirdly proud of it. I learned more about scope in those 24 hours than in the prior six months.',
   },
 };
 
@@ -93,10 +93,11 @@ const source = sourceMap[p.id] || 'github';
           <p>{desc.what}</p>
           <h3 style="margin-top: 32px;">How it's going</h3>
           <p>{desc.how}</p>
-          <div class="footnote-block">
-            <span class="coord-quantum">FOOTNOTE · 03.A</span>
-            <em class="accent-italic">"Every game I have ever finished is a game I almost cancelled in week three."</em>
-          </div>
+          {p.id === 'agneepath' && (
+            <div style="margin-top: 22px;">
+              <a href="https://divittas.itch.io/agnipath" target="_blank" rel="noopener noreferrer" class="btn-primary">Play on itch.io →</a>
+            </div>
+          )}
         </div>
       </div>
     )}

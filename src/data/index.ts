@@ -62,7 +62,7 @@ export interface DevlogEntry {
 }
 
 export const DEVLOG: DevlogEntry[] = [
-  { id: 'dl-001', num: '001', date: '2025.09.18', minutes: 2,
+  { id: '001-announcing-catastrophe-cafe', num: '001', date: '2025.09.18', minutes: 2,
     title: 'Announcing Catastrophe Cafe',
     summary: 'A multiplayer game about running a cat cafe. It gets chaotic fast, especially once the orange cats show up.',
     tags: ['origin'], weekOf: 'WEEK 01' },
