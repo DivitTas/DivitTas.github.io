@@ -1,0 +1,444 @@
+---
+import Base from '../layouts/Base.astro';
+import CafeIllustration from '../components/CafeIllustration.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CommitTicker from '../components/CommitTicker';
+import { GAME, PROJECTS, DEVLOG, COMMITS } from '../data/index';
+---
+
+<Base
+  title="Divit Tasgaonkar — Game developer & builder"
+  description="Hi, I'm Divit. I make games and small, careful tools. Currently building Catastrophe Cafe, a co-op cat-cafe game."
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg-starfield" aria-hidden="true"></div>
+    <div class="hero-orbital" aria-hidden="true"></div>
+    <div class="page-content hero-inner">
+      <div class="section-grid">
+        <span class="slate-label">00 — INDEX</span>
+        <div>
+          <span class="coord-faint hero-kicker">DIVIT_01 · MISSION DOSSIER · IMPERIAL ARCHIVE</span>
+          <h1 class="hero-heading">DIVIT'S<br/>WORLD</h1>
+          <p class="hero-sub">
+            Hi — I'm Divit. I make games and small, careful tools, and I write devlogs about both.
+            Currently building <a href="/devlog" class="helios-link">Catastrophe Cafe</a>, a co-op
+            cat-cafe game, with friends.
+          </p>
+          <div class="hero-ctas">
+            <a href="/devlog" class="btn-primary">Read the devlog →</a>
+            <a href="/work" class="btn-ghost">See all work</a>
+            <span class="coord-faint">{PROJECTS.length} PROJECTS · {DEVLOG.length} DEVLOGS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Game Strip -->
+  <section class="section page-content">
+    <div class="section-grid">
+      <span class="slate-label">01 — FEATURED</span>
+      <div class="featured-card">
+        <div class="featured-badge-top">
+          <span class="pill-transmit">
+            <span class="pulse-dot pulse-dot--helios" aria-hidden="true"></span>
+            IN DEVELOPMENT
+          </span>
+        </div>
+        <div class="featured-classification">
+          <span class="coord-faint">{GAME.classification}</span>
+        </div>
+        <div class="featured-body">
+          <div class="featured-plate">
+            <CafeIllustration />
+          </div>
+          <div class="featured-copy">
+            <span class="coord-faint featured-codename">{GAME.codename} · CURRENT PROJECT</span>
+            <h2 class="featured-title">{GAME.title}</h2>
+            <p class="featured-tagline">{GAME.tagline}</p>
+            <div class="featured-badges">
+              <span class="badge badge--quantum">{GAME.players}</span>
+              <span class="badge badge--quantum">{GAME.engine}</span>
+              <span class="badge badge--default">{GAME.version}</span>
+            </div>
+            <div class="featured-actions">
+              <a href="/devlog" class="btn-primary">Open devlog →</a>
+              <a href={`/devlog/${DEVLOG[0].id}`} class="btn-ghost">Latest entry · {DEVLOG[0].num}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commit Ticker -->
+  <section class="section page-content">
+    <div class="section-grid section-grid--center">
+      <span class="slate-label">02 — TICKER</span>
+      <CommitTicker commits={COMMITS} client:load />
+    </div>
+  </section>
+
+  <!-- Recent Work -->
+  <section class="section page-content">
+    <div class="section-header">
+      <div class="section-header-inner">
+        <span class="slate-label">03 — RECENT</span>
+        <div>
+          <span class="coord-faint" style="display: block; margin-bottom: 6px;">Selected projects</span>
+          <h2>Things I've been building</h2>
+        </div>
+      </div>
+    </div>
+    <div class="section-grid">
+      <div></div>
+      <div class="projects-grid">
+        {PROJECTS.slice(0, 3).map((p, i) => (
+          <ProjectCard project={p} idx={i} />
+        ))}
+      </div>
+    </div>
+    <div class="section-grid" style="margin-top: 24px;">
+      <div></div>
+      <a href="/work" class="see-all-link">See all {PROJECTS.length} projects →</a>
+    </div>
+  </section>
+
+  <!-- Pull Quote -->
+  <section class="section page-content section--quote">
+    <div class="section-grid">
+      <span class="slate-label">04 — SIGNAL</span>
+      <div class="quote-block">
+        <p class="quote-text">
+          "Making a game with friends is like flying a small ship through an asteroid field —
+          <span class="helios-text"> you just need to trust the people next to you and keep shipping."</span>
+        </p>
+        <span class="coord-faint" style="display: block; margin-top: 18px;">— DEVLOG · 2026.03</span>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 88px var(--s-6) 64px;
+    overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg-starfield {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: url('/assets/starfield.svg') center / cover;
+    opacity: 0.6;
+  }
+
+  .hero-orbital {
+    position: absolute;
+    right: -120px;
+    top: -60px;
+    width: 540px;
+    height: 540px;
+    z-index: 0;
+    background: url('/assets/orbital-decoration.svg') center / contain no-repeat;
+    opacity: 0.32;
+    animation: divit-spin 80s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-orbital { animation: none; }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .hero-kicker {
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .hero-heading {
+    font-size: clamp(72px, 11vw, 180px);
+    font-weight: 600;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    color: var(--star);
+    margin: 0;
+  }
+
+  .hero-sub {
+    margin-top: 28px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--star-dim);
+    max-width: 560px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  .section {
+    padding: var(--s-7) 0;
+  }
+
+  .section--quote {
+    padding: var(--s-7) 0 var(--s-6);
+  }
+
+  .section-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+  }
+
+  .section-grid--center {
+    align-items: center;
+  }
+
+  .section-header { margin-bottom: 32px; }
+  .section-header-inner {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .section-header-inner h2 {
+    font-size: var(--fs-h2);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    color: var(--star);
+  }
+
+  .slate-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--star-mute);
+    padding-top: 4px;
+  }
+
+  .coord-faint {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+  }
+
+  .featured-card {
+    position: relative;
+    border: var(--border-hair);
+    border-radius: var(--r-lg);
+    background: var(--deep-space);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .featured-badge-top {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+  }
+
+  .featured-classification {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+  }
+
+  .featured-body {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    min-height: 360px;
+  }
+
+  .featured-plate {
+    position: relative;
+    border-right: var(--border-dash);
+  }
+
+  .featured-copy {
+    padding: 40px 36px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .featured-codename {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .featured-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--star);
+    line-height: 1;
+    margin: 0;
+  }
+
+  .featured-tagline {
+    margin-top: 14px;
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    color: var(--star-dim);
+    max-width: 460px;
+  }
+
+  .featured-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+
+  .featured-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .see-all-link {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--helios);
+    border-bottom: 1px dotted var(--helios);
+    text-decoration: none;
+    width: fit-content;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .see-all-link:hover { color: var(--helios-deep); border-bottom-color: var(--helios-deep); }
+
+  .quote-block {
+    max-width: 760px;
+  }
+
+  .quote-text {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-size: clamp(22px, 3vw, 32px);
+    line-height: 1.35;
+    color: var(--star);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .helios-text { color: var(--helios); }
+  .helios-link { color: var(--helios); border-bottom-color: color-mix(in oklab, var(--helios) 50%, transparent); }
+
+  /* Pill */
+  .pill-transmit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: var(--r-full);
+    border: var(--border-hair);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--helios);
+    white-space: nowrap;
+    border-color: color-mix(in oklab, var(--helios) 40%, transparent);
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: divit-pulse 1.6s infinite;
+    flex-shrink: 0;
+  }
+  .pulse-dot--helios { background: var(--helios); }
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .badge--quantum { background: rgba(94,228,255,0.12); color: var(--quantum); }
+  .badge--default { background: var(--orbit); color: var(--star-mute); }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: var(--r-sm);
+    background: var(--helios);
+    color: #14141a;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    border-bottom: none;
+    transition: background var(--dur-fast) var(--ease-out);
+    line-height: 1;
+  }
+  .btn-primary:hover { background: var(--helios-deep); border-bottom: none; color: #14141a; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: var(--r-sm);
+    border: var(--border-hair);
+    background: transparent;
+    color: var(--star);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+    line-height: 1;
+  }
+  .btn-ghost:hover { border-color: var(--star-mute); color: var(--star); border-bottom: 1px solid var(--star-mute); }
+
+  @media (max-width: 900px) {
+    .featured-body { grid-template-columns: 1fr; }
+    .featured-plate { min-height: 280px; border-right: none; border-bottom: var(--border-dash); }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .section-header-inner { grid-template-columns: 1fr; }
+    .slate-label { display: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .hero-heading { font-size: clamp(56px, 14vw, 100px); }
+  }
+</style>

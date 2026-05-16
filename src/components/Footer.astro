@@ -1,0 +1,129 @@
+---
+import { CONTACT } from '../data/index';
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/assets/logo-mark.svg" alt="Divit Tasgaonkar" width="40" height="40" />
+      <p class="footer-tagline">
+        Built carefully by Divit. Last transmission
+        <span class="footer-date">2026.05.14</span>.
+        May the source be with you.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <span class="footer-label">Navigate</span>
+      <nav>
+        <a href="/">Index</a>
+        <a href="/work">Work</a>
+        <a href="/devlog">Devlog</a>
+        <a href="/notes">Notes</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+
+    <div class="footer-col">
+      <span class="footer-label">Elsewhere</span>
+      <nav>
+        <a href={CONTACT.github.url} target="_blank" rel="noreferrer">GitHub ↗</a>
+        <a href={CONTACT.linkedin.url} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <a href={`mailto:${CONTACT.email}`}>Email ↗</a>
+      </nav>
+    </div>
+
+    <div class="footer-col">
+      <span class="footer-label">Mission ID</span>
+      <div class="footer-coords">
+        DIVIT_01 · v2.3.1<br />
+        LAT 19.1°N<br />
+        LON 72.9°E
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: var(--s-8) var(--s-6) var(--s-7);
+    margin-top: var(--s-9);
+    border-top: var(--border-dash);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--s-6);
+  }
+
+  .footer-brand img {
+    display: block;
+  }
+
+  .footer-tagline {
+    margin-top: var(--s-3);
+    font-size: var(--fs-sm);
+    color: var(--star-mute);
+    line-height: 1.6;
+    max-width: 340px;
+  }
+
+  .footer-date {
+    font-family: var(--font-mono);
+    color: var(--star);
+  }
+
+  .footer-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--star-faint);
+    margin-bottom: 10px;
+  }
+
+  .footer-col nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-col nav a {
+    font-size: var(--fs-sm);
+    color: var(--star-dim);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .footer-col nav a:hover {
+    color: var(--star);
+    border-bottom: none;
+  }
+
+  .footer-coords {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--star-mute);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-7);
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,123 @@
+---
+import type { DevlogEntry } from '../data/index';
+
+interface Props {
+  entry: DevlogEntry;
+}
+const { entry: e } = Astro.props;
+---
+
+<a href={`/devlog/${e.id}`} class="devlog-card">
+  <div class="card-meta">
+    <span class="card-num">DEVLOG.{e.num}</span>
+    <span class="card-date">{e.date} · {e.weekOf}</span>
+  </div>
+  <h3 class="card-title">{e.title}</h3>
+  <p class="card-summary">{e.summary}</p>
+  <div class="card-footer">
+    <div class="card-tags">
+      {e.tags.map(t => <span class="badge">{t}</span>)}
+    </div>
+    <span class="card-readtime">{e.minutes} MIN ↗</span>
+  </div>
+</a>
+
+<style>
+  .devlog-card {
+    display: block;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--r-md);
+    background: var(--deep-space);
+    padding: 20px 22px;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--dur-base) var(--ease-out);
+    color: inherit;
+  }
+  .devlog-card:hover {
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 0 0 1px color-mix(in oklab, var(--star) 18%, transparent);
+    border-bottom: none;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .card-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--helios);
+  }
+
+  .card-date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+    white-space: nowrap;
+  }
+
+  .card-title {
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--fs-h3);
+    letter-spacing: -0.012em;
+    color: var(--star);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .devlog-card:hover .card-title {
+    color: var(--helios);
+  }
+
+  .card-summary {
+    margin-top: 8px;
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    color: var(--star-dim);
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: var(--border-dash);
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+  }
+
+  .badge {
+    display: inline-flex;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--orbit);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-mute);
+  }
+
+  .card-readtime {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .devlog-card:hover .card-readtime {
+    color: var(--helios);
+  }
+</style>

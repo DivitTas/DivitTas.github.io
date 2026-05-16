@@ -1,0 +1,159 @@
+---
+import PlateThumb from './PlateThumb.astro';
+import type { Project } from '../data/index';
+
+interface Props {
+  project: Project;
+  idx: number;
+}
+const { project: p, idx } = Astro.props;
+
+const statusColor = p.status === 'IN_DEV' ? 'var(--helios)' : p.status === 'SHIPPED' ? 'var(--signal)' : 'var(--star-faint)';
+const toneMap: Record<string, string> = {
+  helios: 'var(--helios)',
+  signal: 'var(--signal)',
+  quantum: 'var(--quantum)',
+  default: 'var(--star-mute)',
+};
+const badgeBgMap: Record<string, string> = {
+  helios: 'color-mix(in oklab, var(--helios) 14%, transparent)',
+  signal: 'rgba(109,255,174,0.12)',
+  quantum: 'rgba(94,228,255,0.12)',
+  default: 'var(--orbit)',
+};
+---
+
+<a href={`/work/${p.id}`} class="project-card">
+  <div class="card-plate">
+    <PlateThumb variant={p.thumb} title={p.title} />
+    <span class="card-index" aria-hidden="true">{String(idx + 1).padStart(2, '0')}.{p.code}</span>
+    {p.status && (
+      <span class="card-status" style={`color: ${statusColor};`} aria-label={`Status: ${p.status.replace('_', ' ')}`}>
+        {p.status.replace('_', ' ')}
+      </span>
+    )}
+  </div>
+  <div class="card-body">
+    <div class="card-header">
+      <h3 class="card-title">{p.title}</h3>
+      <span class="card-year">{p.year}</span>
+    </div>
+    <p class="card-blurb">{p.blurb}</p>
+    <div class="card-tags">
+      {p.tags.map(t => (
+        <span
+          class="badge"
+          style={`background: ${badgeBgMap[t.tone] || badgeBgMap.default}; color: ${toneMap[t.tone] || toneMap.default};`}
+        >
+          {t.label}
+        </span>
+      ))}
+    </div>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: block;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--r-md);
+    background: var(--deep-space);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow var(--dur-base) var(--ease-out);
+    color: inherit;
+  }
+  .project-card:hover {
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 0 0 1px color-mix(in oklab, var(--star) 18%, transparent);
+    border-bottom: none;
+  }
+
+  .card-plate {
+    aspect-ratio: 16 / 9;
+    border-bottom: var(--border-hair);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-index {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+  }
+
+  .card-status {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .card-body {
+    padding: 18px 20px 20px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--fs-h3);
+    letter-spacing: -0.01em;
+    color: var(--star);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .project-card:hover .card-title {
+    color: var(--helios);
+  }
+
+  .card-year {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--star-faint);
+    white-space: nowrap;
+  }
+
+  .card-blurb {
+    margin-top: 8px;
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+    color: var(--star-dim);
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: var(--border-dash);
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+</style>

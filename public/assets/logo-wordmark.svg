@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none" font-family="&#39;Space Grotesk&#39;, sans-serif">
+  
+  <g transform="translate(8,8)">
+    <ellipse cx="32" cy="32" rx="28" ry="10" stroke="#f0ead6" stroke-width="1.2" transform="rotate(-22 32 32)"></ellipse>
+    <ellipse cx="32" cy="32" rx="18" ry="6.5" stroke="#f0ead6" stroke-width="1" opacity="0.5" transform="rotate(22 32 32)"></ellipse>
+    <circle cx="32" cy="32" r="7.5" fill="#f0ead6"></circle>
+    <circle cx="56" cy="16" r="2" fill="#ffb347"></circle>
+  </g>
+  
+  <text x="84" y="50" fill="#f0ead6" font-size="34" font-weight="600" letter-spacing="-0.02em">DIVIT</text>
+  
+  <text x="85" y="66" fill="#8d8a7e" font-size="9" font-family="&#39;JetBrains Mono&#39;, monospace" letter-spacing="0.16em">— WORLD / 01</text>
+</svg>
