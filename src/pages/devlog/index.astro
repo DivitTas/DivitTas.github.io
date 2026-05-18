@@ -2,7 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import CafeIllustration from '../../components/CafeIllustration.astro';
 import DevlogHub from '../../components/DevlogHub';
-import { GAME, DEVLOG } from '../../data/index';
+import { GAME } from '../../data/index';
+import { getCollection } from 'astro:content';
+
+const allEntries = await getCollection('devlog');
+const entries = allEntries
+  .sort((a, b) => b.data.num.localeCompare(a.data.num))
+  .map(e => ({ id: e.id, ...e.data }));
 ---
 
 <Base
@@ -37,7 +43,7 @@ import { GAME, DEVLOG } from '../../data/index';
     </div>
 
     <!-- Entries (interactive) -->
-    <DevlogHub entries={DEVLOG} client:load />
+    <DevlogHub entries={entries} client:load />
   </div>
 </Base>
 

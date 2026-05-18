@@ -3,8 +3,13 @@ import Base from '../layouts/Base.astro';
 import CafeIllustration from '../components/CafeIllustration.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import CommitTicker from '../components/CommitTicker';
-import { GAME, PROJECTS, DEVLOG, COMMITS } from '../data/index';
+import { GAME, PROJECTS, COMMITS } from '../data/index';
 import { fetchRecentCommits } from '../lib/github';
+import { getCollection } from 'astro:content';
+
+const allDevlogs = await getCollection('devlog');
+const devlogs = allDevlogs.sort((a, b) => b.data.num.localeCompare(a.data.num));
+const latestDevlog = devlogs[0];
 
 let commits = COMMITS;
 try {
@@ -35,7 +40,7 @@ try {
           <div class="hero-ctas">
             <a href="/devlog" class="btn-primary">Read the devlog →</a>
             <a href="/work" class="btn-ghost">See all work</a>
-            <span class="coord-faint">{PROJECTS.length} PROJECTS · {DEVLOG.length} DEVLOGS</span>
+            <span class="coord-faint">{PROJECTS.length} PROJECTS · {devlogs.length} DEVLOGS</span>
           </div>
         </div>
       </div>
@@ -71,7 +76,7 @@ try {
             </div>
             <div class="featured-actions">
               <a href="/devlog" class="btn-primary">Open devlog →</a>
-              <a href={`/devlog/${DEVLOG[0].id}`} class="btn-ghost">Latest entry · {DEVLOG[0].num}</a>
+              <a href={`/devlog/${latestDevlog.id}`} class="btn-ghost">Latest entry · {latestDevlog.data.num}</a>
             </div>
           </div>
         </div>
@@ -117,11 +122,8 @@ try {
     <div class="section-grid">
       <span class="slate-label">04 — SIGNAL</span>
       <div class="quote-block">
-        <p class="quote-text">
-          "Making a game with friends is like flying a small ship through an asteroid field —
-          <span class="helios-text"> you just need to trust the people next to you and keep shipping."</span>
-        </p>
-        <span class="coord-faint" style="display: block; margin-top: 18px;">— DEVLOG · 2026.03</span>
+        <p class="quote-text">"Claude Code can't replace me."</p>
+        <span class="coord-faint" style="display: block; margin-top: 18px;">— <s>Claude Code</s> <span style="color: var(--helios); font-style: italic;">Divit</span></span>
       </div>
     </div>
   </section>

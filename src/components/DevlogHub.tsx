@@ -1,5 +1,15 @@
 import { useState } from 'react';
-import type { DevlogEntry } from '../data/index';
+
+interface DevlogEntry {
+  id: string;
+  num: string;
+  date: string;
+  minutes: number;
+  title: string;
+  summary: string;
+  tags: string[];
+  weekOf?: string;
+}
 
 interface Props {
   entries: DevlogEntry[];
