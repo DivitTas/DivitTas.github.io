@@ -23,13 +23,18 @@ const badgeBgMap: Record<string, string> = {
   quantum: 'rgba(94,228,255,0.12)',
 };
 
-const longDesc: Record<string, { what: string; how: string }> = {
+const longDesc: Record<string, { what: string | string[]; how: string }> = {
   'cat-cafe': {
     what: "It's a multiplayer game where you've got to manage a cafe whilst dealing with the silliest of cats running around causing havoc.",
     how: '',
   },
   'agneepath': {
-    what: 'A 2D action platformer built in roughly 24 hours for the Campfire Bengaluru game jam, made as a team of three. I led the team and handled the primary game mechanics — one level, one boss, hand-tuned physics, and a hard final encounter. Shipped on itch.io the next morning.',
+    what: [
+      'A 2D action platformer built in roughly 24 hours for the Campfire Bengaluru game jam',
+      'Made as a team of three — I led the team and handled primary game mechanics',
+      'One level, one boss, hand-tuned physics, and a hard final encounter',
+      'Shipped on itch.io the next morning',
+    ],
     how: 'Shipped, archived, and weirdly proud of it. I learned more about scope in those 24 hours than in the prior six months.',
   },
 };
@@ -89,7 +94,10 @@ const source = sourceMap[p.id] || 'github';
         <span class="slate-label">03 — LOG</span>
         <div class="project-body">
           <h3>What it is</h3>
-          <p>{desc.what}</p>
+          {Array.isArray(desc.what)
+            ? <ul>{desc.what.map(item => <li>{item}</li>)}</ul>
+            : <p>{desc.what}</p>
+          }
           {desc.how && (
             <>
               <h3 style="margin-top: 32px;">How it's going</h3>
@@ -256,6 +264,18 @@ const source = sourceMap[p.id] || 'github';
     font-size: var(--fs-body);
     line-height: 1.7;
     color: var(--star-dim);
+  }
+
+  .project-body ul {
+    margin-top: 8px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-body li {
+    line-height: 1.6;
   }
 
   .project-body h3 {
