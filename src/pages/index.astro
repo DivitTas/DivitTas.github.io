@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import CafeIllustration from '../components/CafeIllustration.astro';
+import PlateThumb from '../components/PlateThumb.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import CommitTicker from '../components/CommitTicker';
 import { GAME, PROJECTS, COMMITS } from '../data/index';
@@ -63,7 +63,7 @@ try {
         </div>
         <div class="featured-body">
           <div class="featured-plate">
-            <CafeIllustration />
+            <PlateThumb src="/assets/cat_mug.png" title={GAME.title} />
           </div>
           <div class="featured-copy">
             <span class="coord-faint featured-codename">{GAME.codename} · CURRENT PROJECT</span>

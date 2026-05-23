@@ -1,6 +1,5 @@
 ---
 import Base from '../../layouts/Base.astro';
-import CafeIllustration from '../../components/CafeIllustration.astro';
 import PlateThumb from '../../components/PlateThumb.astro';
 import { PROJECTS } from '../../data/index';
 
@@ -26,11 +25,11 @@ const badgeBgMap: Record<string, string> = {
 
 const longDesc: Record<string, { what: string; how: string }> = {
   'cat-cafe': {
-    what: 'Catastrophe Cafe is a 2–4 player online co-op game about running a cat cafe at the edge of the galaxy. Customers want coffee, cats want chaos, and the fire extinguisher is in a slightly different place every shift. We are making the co-op kitchen game we always wanted, with cats, and with very little dignity.',
-    how: 'Currently v0.3.4. The kitchen feels good. Cat AI is in its fourth pathfinding rewrite. The netcode mostly survives my friends jumping on the same bowl at the same time. Aiming for an early playtest later this year.',
+    what: "It's a multiplayer game where you've got to manage a cafe whilst dealing with the silliest of cats running around causing havoc.",
+    how: '',
   },
   'agneepath': {
-    what: 'A 2D action platformer built in roughly 24 hours for a personal jam. One level, one boss, hand-tuned physics, and a hard final encounter. Shipped on itch.io the next morning.',
+    what: 'A 2D action platformer built in roughly 24 hours for the Campfire Bengaluru game jam, made as a team of three. I led the team and handled the primary game mechanics — one level, one boss, hand-tuned physics, and a hard final encounter. Shipped on itch.io the next morning.',
     how: 'Shipped, archived, and weirdly proud of it. I learned more about scope in those 24 hours than in the prior six months.',
   },
 };
@@ -78,7 +77,7 @@ const source = sourceMap[p.id] || 'github';
     <div class="section-grid" style="margin-top: 56px;">
       <span class="slate-label">02 — PLATE</span>
       <div class="plate-wrapper">
-        {p.id === 'cat-cafe' ? <CafeIllustration /> : <PlateThumb variant={p.thumb} title={p.title} />}
+        <PlateThumb src={p.thumb} title={p.title} />
         <span class="plate-label-left coord-faint">PLATE 02.A</span>
         <span class="plate-label-right coord-faint">{p.title.toUpperCase()}</span>
       </div>
@@ -91,8 +90,12 @@ const source = sourceMap[p.id] || 'github';
         <div class="project-body">
           <h3>What it is</h3>
           <p>{desc.what}</p>
-          <h3 style="margin-top: 32px;">How it's going</h3>
-          <p>{desc.how}</p>
+          {desc.how && (
+            <>
+              <h3 style="margin-top: 32px;">How it's going</h3>
+              <p>{desc.how}</p>
+            </>
+          )}
           {p.id === 'agneepath' && (
             <div style="margin-top: 22px;">
               <a href="https://divittas.itch.io/agnipath" target="_blank" rel="noopener noreferrer" class="btn-primary">Play on itch.io →</a>

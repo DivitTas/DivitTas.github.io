@@ -28,7 +28,7 @@ export interface Project {
   code: string;
   title: string;
   year: string;
-  thumb: number;
+  thumb: string;
   blurb: string;
   tags: ProjectTag[];
   featured?: boolean;
@@ -37,13 +37,13 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'cat-cafe', code: 'A', title: 'Catastrophe Cafe', year: '2025', thumb: 0,
+    id: 'cat-cafe', code: 'A', title: 'Catastrophe Cafe', year: '2025', thumb: '/assets/cat_mug.png',
     blurb: 'A 2–4 player co-op game about running a cat cafe. Serve customers, manage the cats, try to keep things together.',
     tags: [{ label: 'Unity', tone: 'helios' }, { label: 'Co-op', tone: 'signal' }, { label: 'In progress', tone: 'quantum' }],
     featured: true, status: 'IN_DEV',
   },
   {
-    id: 'agneepath', code: 'B', title: 'Agneepath', year: '2025', thumb: 2,
+    id: 'agneepath', code: 'B', title: 'Agneepath', year: '2025', thumb: '/assets/agnipath.png',
     blurb: 'A 2D platformer built and shipped in roughly 24 hours. Hand-tuned physics, one boss, no regrets.',
     tags: [{ label: '24h jam', tone: 'helios' }, { label: '2D', tone: 'quantum' }, { label: 'Shipped', tone: 'signal' }],
     status: 'SHIPPED',

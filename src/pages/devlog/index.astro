@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import CafeIllustration from '../../components/CafeIllustration.astro';
+import PlateThumb from '../../components/PlateThumb.astro';
 import DevlogHub from '../../components/DevlogHub';
 import { GAME } from '../../data/index';
 import { getCollection } from 'astro:content';
@@ -38,7 +38,7 @@ const entries = allEntries
     <div class="section-grid" style="margin-bottom: 56px;">
       <span class="slate-label">—</span>
       <div class="hero-plate">
-        <CafeIllustration />
+        <PlateThumb src="/assets/cat_mug.png" title={GAME.title} />
       </div>
     </div>
 
