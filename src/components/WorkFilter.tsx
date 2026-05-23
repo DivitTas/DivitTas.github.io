@@ -87,7 +87,8 @@ export default function WorkFilter({ projects }: Props) {
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 0 rgba(255,255,255,0.04) inset, 0 0 0 1px color-mix(in oklab, var(--star) 18%, transparent)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = 'var(--shadow-card)'; }}
             >
-              <div style={{ aspectRatio: '16/9', borderBottom: '1px solid var(--hairline)', position: 'relative', background: 'var(--nebula)' }}>
+              <div style={{ aspectRatio: '16/9', borderBottom: '1px solid var(--hairline)', position: 'relative', background: 'var(--nebula)', overflow: 'hidden' }}>
+                <img src={p.thumb} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <span style={{ position: 'absolute', top: 10, left: 12, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--star-faint)' }}>
                   {String(i + 1).padStart(2, '0')}.{p.code}
                 </span>
