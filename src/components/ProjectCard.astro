@@ -25,7 +25,7 @@ const badgeBgMap: Record<string, string> = {
 
 <a href={`/work/${p.id}`} class="project-card">
   <div class="card-plate">
-    <PlateThumb variant={p.thumb} title={p.title} />
+    <PlateThumb src={p.thumb} title={p.title} />
     <span class="card-index" aria-hidden="true">{String(idx + 1).padStart(2, '0')}.{p.code}</span>
     {p.status && (
       <span class="card-status" style={`color: ${statusColor};`} aria-label={`Status: ${p.status.replace('_', ' ')}`}>

@@ -1,116 +1,22 @@
 ---
 interface Props {
-  variant?: number;
+  src: string;
   title?: string;
 }
-const { variant = 0, title = '' } = Astro.props;
-const W = 480, H = 280;
+const { src, title = '' } = Astro.props;
 ---
 
-{variant === 0 && (
-<svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" class="plate-thumb" aria-label={title || "Cat cafe thumbnail"}>
-  <rect width={W} height={H} fill="var(--nebula)"/>
-  <g stroke="var(--star-faint)" stroke-width="0.6">
-    <path d="M8 8 L8 22 M8 8 L22 8"/>
-    <path d={`M${W-8} 8 L${W-8} 22 M${W-8} 8 L${W-22} 8`}/>
-    <path d={`M8 ${H-8} L8 ${H-22} M8 ${H-8} L22 ${H-8}`}/>
-    <path d={`M${W-8} ${H-8} L${W-8} ${H-22} M${W-8} ${H-8} L${W-22} ${H-8}`}/>
-  </g>
-  <g transform={`translate(${W/2} ${H/2})`}>
-    <ellipse rx="180" ry="60" stroke="var(--star)" stroke-opacity="0.22" fill="none" transform="rotate(-12)"/>
-    <ellipse rx="130" ry="44" stroke="var(--star)" stroke-opacity="0.16" fill="none" transform="rotate(14)" stroke-dasharray="2 4"/>
-    <g>
-      <path d="M-28 -20 L28 -20 L24 22 L-24 22 Z" stroke="var(--star)" stroke-opacity="0.7" fill="none"/>
-      <path d="M28 -10 Q44 -10 44 4 Q44 18 28 18" stroke="var(--star)" stroke-opacity="0.7" fill="none"/>
-      <ellipse cx="0" cy="-20" rx="28" ry="6" stroke="var(--helios)" stroke-opacity="0.85" fill="none"/>
-      <path d="M-10 -22 L-7 -32 L-2 -22 Z M2 -22 L7 -32 L10 -22 Z" fill="var(--star)" opacity="0.6"/>
-    </g>
-    <circle cx="180" cy="-46" r="3" fill="var(--helios)"/>
-    <circle cx="180" cy="-46" r="9" stroke="var(--helios)" stroke-opacity="0.5" fill="none"/>
-  </g>
-</svg>
-)}
-
-{variant === 1 && (
-<svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" class="plate-thumb" aria-label={title || "Signal waveform thumbnail"}>
-  <rect width={W} height={H} fill="var(--nebula)"/>
-  <g stroke="var(--star-faint)" stroke-width="0.6">
-    <path d="M8 8 L8 22 M8 8 L22 8"/>
-    <path d={`M${W-8} 8 L${W-8} 22 M${W-8} 8 L${W-22} 8`}/>
-    <path d={`M8 ${H-8} L8 ${H-22} M8 ${H-8} L22 ${H-8}`}/>
-    <path d={`M${W-8} ${H-8} L${W-8} ${H-22} M${W-8} ${H-8} L${W-22} ${H-8}`}/>
-  </g>
-  <g transform={`translate(0 ${H/2})`} stroke="var(--star)" stroke-opacity="0.5" fill="none">
-    <path d="M0 0 Q40 -60 80 0 T160 0 T240 0 T320 0 T400 0 T480 0"/>
-    <path d="M0 0 Q40 -30 80 0 T160 0 T240 0 T320 0 T400 0 T480 0" stroke-opacity="0.25"/>
-  </g>
-  <g stroke="var(--star-faint)" stroke-dasharray="2 6" stroke-width="0.5">
-    {[80,160,240,320,400].map(x => (
-      <line x1={x} y1="20" x2={x} y2={H-20}/>
-    ))}
-  </g>
-  <text x="20" y={H-18} fill="var(--star-faint)" font-family="var(--font-mono)" font-size="10" letter-spacing="0.12em">SIG.AMP 0.42 / 1.0</text>
-</svg>
-)}
-
-{variant === 2 && (
-<svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" class="plate-thumb" aria-label={title || "Platformer game thumbnail"}>
-  <rect width={W} height={H} fill="var(--nebula)"/>
-  <g stroke="var(--star-faint)" stroke-width="0.6">
-    <path d="M8 8 L8 22 M8 8 L22 8"/>
-    <path d={`M${W-8} 8 L${W-8} 22 M${W-8} 8 L${W-22} 8`}/>
-    <path d={`M8 ${H-8} L8 ${H-22} M8 ${H-8} L22 ${H-8}`}/>
-    <path d={`M${W-8} ${H-8} L${W-8} ${H-22} M${W-8} ${H-8} L${W-22} ${H-8}`}/>
-  </g>
-  <g stroke="var(--star)" stroke-opacity="0.08" stroke-width="0.5">
-    {[0,1,2,3,4,5,6,7,8,9,10,11].map(i => (
-      <line x1={i*40} y1="0" x2={i*40} y2={H}/>
-    ))}
-    {[0,1,2,3,4,5,6].map(i => (
-      <line x1="0" y1={i*40} x2={W} y2={i*40}/>
-    ))}
-  </g>
-  <g fill="var(--star)" opacity="0.6">
-    <rect x="40" y="200" width="120" height="20"/>
-    <rect x="200" y="160" width="80" height="20"/>
-    <rect x="320" y="200" width="120" height="20"/>
-  </g>
-  <g fill="var(--helios)">
-    <rect x="92" y="180" width="16" height="20"/>
-    <rect x="88" y="172" width="24" height="8"/>
-  </g>
-  <g stroke="var(--star)" stroke-opacity="0.8" fill="none">
-    <path d="M340 200 L360 170 L380 200 L370 200 L370 170 L350 170 L350 200 Z"/>
-  </g>
-  <text x="20" y="30" fill="var(--star-faint)" font-family="var(--font-mono)" font-size="10" letter-spacing="0.12em">2D · 24H BUILD · FRAME 042</text>
-</svg>
-)}
-
-{variant === 3 && (
-<svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" class="plate-thumb" aria-label={title || "Satellite orbit thumbnail"}>
-  <rect width={W} height={H} fill="var(--nebula)"/>
-  <g stroke="var(--star-faint)" stroke-width="0.6">
-    <path d="M8 8 L8 22 M8 8 L22 8"/>
-    <path d={`M${W-8} 8 L${W-8} 22 M${W-8} 8 L${W-22} 8`}/>
-    <path d={`M8 ${H-8} L8 ${H-22} M8 ${H-8} L22 ${H-8}`}/>
-    <path d={`M${W-8} ${H-8} L${W-8} ${H-22} M${W-8} ${H-8} L${W-22} ${H-8}`}/>
-  </g>
-  <g transform={`translate(${W/2} ${H/2})`}>
-    <circle r="100" stroke="var(--star)" stroke-opacity="0.15" fill="none"/>
-    <circle r="60" stroke="var(--star)" stroke-opacity="0.2" fill="none" stroke-dasharray="1 4"/>
-    <rect x="-14" y="-6" width="28" height="12" fill="var(--star)" opacity="0.85"/>
-    <rect x="-40" y="-3" width="22" height="6" fill="var(--quantum)" opacity="0.7"/>
-    <rect x="18" y="-3" width="22" height="6" fill="var(--quantum)" opacity="0.7"/>
-    <line x1="0" y1="0" x2="0" y2="-100" stroke="var(--star-faint)" stroke-width="0.5" stroke-dasharray="2 3"/>
-  </g>
-  <text x="20" y="30" fill="var(--star-faint)" font-family="var(--font-mono)" font-size="10" letter-spacing="0.12em">ORBIT.LOW · 408 KM</text>
-</svg>
-)}
+<img
+  src={src}
+  alt={title}
+  class="plate-thumb"
+/>
 
 <style>
   .plate-thumb {
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: cover;
   }
 </style>

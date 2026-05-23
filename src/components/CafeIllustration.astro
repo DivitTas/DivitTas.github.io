@@ -1,105 +1,17 @@
 ---
 ---
 
-<svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" class="cafe-illustration" aria-label="Catastrophe Cafe illustration — a cat cafe counter with cats, coffee equipment, and hanging lights">
-  <defs>
-    <pattern id="cafedots" width="14" height="14" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.6" fill="var(--star)" opacity="0.18"/>
-    </pattern>
-  </defs>
-  <rect width="600" height="400" fill="var(--nebula)"/>
-  <rect width="600" height="400" fill="url(#cafedots)"/>
-  <!-- tracking corner ticks -->
-  <g stroke="var(--star-faint)" stroke-width="0.6">
-    <path d="M14 14 L14 30 M14 14 L30 14"/>
-    <path d="M586 14 L586 30 M586 14 L570 14"/>
-    <path d="M14 386 L14 370 M14 386 L30 386"/>
-    <path d="M586 386 L586 370 M586 386 L570 386"/>
-  </g>
-  <!-- horizon line -->
-  <line x1="40" y1="260" x2="560" y2="260" stroke="var(--star-faint)" stroke-dasharray="2 4"/>
-  <!-- counter -->
-  <g>
-    <rect x="80" y="220" width="440" height="44" fill="none" stroke="var(--star)" stroke-opacity="0.5"/>
-    <line x1="80" y1="232" x2="520" y2="232" stroke="var(--star)" stroke-opacity="0.25"/>
-    <!-- coffee machine -->
-    <g transform="translate(110 178)">
-      <rect width="64" height="42" fill="none" stroke="var(--star)" stroke-opacity="0.6"/>
-      <line x1="0" y1="14" x2="64" y2="14" stroke="var(--star)" stroke-opacity="0.4"/>
-      <rect x="22" y="34" width="20" height="14" fill="none" stroke="var(--star)" stroke-opacity="0.6"/>
-      <circle cx="12" cy="22" r="3" fill="var(--helios)"/>
-      <circle cx="22" cy="22" r="3" fill="var(--star)" opacity="0.5"/>
-    </g>
-    <!-- cups -->
-    <g transform="translate(220 188)">
-      <ellipse cx="0" cy="0" rx="18" ry="4" fill="none" stroke="var(--helios)" stroke-opacity="0.85"/>
-      <path d="M-16 0 L-12 30 L12 30 L16 0" fill="none" stroke="var(--star)" stroke-opacity="0.7"/>
-    </g>
-    <g transform="translate(280 188)">
-      <ellipse cx="0" cy="0" rx="14" ry="3" fill="none" stroke="var(--quantum)" stroke-opacity="0.8"/>
-      <path d="M-12 0 L-9 22 L9 22 L12 0" fill="none" stroke="var(--star)" stroke-opacity="0.7"/>
-    </g>
-    <!-- napkin / tablet -->
-    <rect x="320" y="190" width="60" height="36" fill="none" stroke="var(--star)" stroke-opacity="0.5"/>
-    <line x1="332" y1="200" x2="368" y2="200" stroke="var(--star)" stroke-opacity="0.4"/>
-    <line x1="332" y1="208" x2="360" y2="208" stroke="var(--star)" stroke-opacity="0.4"/>
-    <line x1="332" y1="216" x2="368" y2="216" stroke="var(--star)" stroke-opacity="0.4"/>
-    <!-- register -->
-    <g transform="translate(420 184)">
-      <rect width="56" height="42" fill="none" stroke="var(--star)" stroke-opacity="0.6"/>
-      <rect x="6" y="6" width="44" height="14" fill="none" stroke="var(--helios)" stroke-opacity="0.8"/>
-      <line x1="6" y1="28" x2="50" y2="28" stroke="var(--star)" stroke-opacity="0.4"/>
-    </g>
-  </g>
-  <!-- cat 1 — on counter -->
-  <g transform="translate(160 200)">
-    <ellipse cx="0" cy="14" rx="14" ry="9" fill="var(--star)"/>
-    <circle cx="0" cy="2" r="9" fill="var(--star)"/>
-    <path d="M-6 -5 L-9 -10 L-4 -7 Z M6 -5 L9 -10 L4 -7 Z" fill="var(--star)"/>
-    <circle cx="-3" cy="2" r="0.8" fill="var(--void)"/>
-    <circle cx="3" cy="2" r="0.8" fill="var(--void)"/>
-    <path d="M14 14 Q24 8 22 -2" fill="none" stroke="var(--star)" stroke-width="2"/>
-  </g>
-  <!-- cat 2 — on the floor -->
-  <g transform="translate(380 300)">
-    <ellipse cx="0" cy="12" rx="18" ry="10" fill="var(--helios)"/>
-    <circle cx="-14" cy="2" r="8" fill="var(--helios)"/>
-    <path d="M-20 -4 L-22 -10 L-17 -7 Z M-10 -4 L-8 -10 L-13 -7 Z" fill="var(--helios)"/>
-    <path d="M18 8 Q26 0 24 -8" fill="none" stroke="var(--helios)" stroke-width="2.5"/>
-    <circle cx="-16" cy="2" r="0.8" fill="var(--void)"/>
-    <circle cx="-11" cy="2" r="0.8" fill="var(--void)"/>
-  </g>
-  <!-- cat 3 — playing with napkin -->
-  <g transform="translate(330 318)">
-    <ellipse cx="0" cy="0" rx="10" ry="6" fill="var(--star)" opacity="0.85"/>
-    <circle cx="-8" cy="-4" r="5" fill="var(--star)" opacity="0.85"/>
-    <path d="M-11 -8 L-12 -12 L-9 -10 Z M-6 -8 L-5 -12 L-8 -10 Z" fill="var(--star)" opacity="0.85"/>
-  </g>
-  <!-- hanging lights -->
-  <g stroke="var(--star-faint)" stroke-width="0.5">
-    <line x1="120" y1="40" x2="120" y2="110"/>
-    <line x1="280" y1="40" x2="280" y2="90"/>
-    <line x1="440" y1="40" x2="440" y2="120"/>
-  </g>
-  <circle cx="120" cy="118" r="6" fill="var(--helios)" opacity="0.85"/>
-  <circle cx="120" cy="118" r="14" fill="var(--helios)" opacity="0.15"/>
-  <circle cx="280" cy="98" r="5" fill="var(--helios)" opacity="0.7"/>
-  <circle cx="440" cy="128" r="6" fill="var(--helios)" opacity="0.85"/>
-  <circle cx="440" cy="128" r="14" fill="var(--helios)" opacity="0.15"/>
-  <!-- steam -->
-  <g stroke="var(--star)" stroke-opacity="0.35" fill="none">
-    <path d="M220 180 Q215 170 220 162 Q225 154 220 146"/>
-    <path d="M232 180 Q237 170 232 162 Q227 154 232 146"/>
-  </g>
-  <!-- coord labels -->
-  <text x="28" y="48" fill="var(--star-faint)" font-family="var(--font-mono)" font-size="10" letter-spacing="0.16em">PLATE 01.A · CAT-1 / CAFE_FLOOR</text>
-  <text x="28" y="380" fill="var(--star-faint)" font-family="var(--font-mono)" font-size="10" letter-spacing="0.16em">SECTOR: BOMBAY · NOMINAL</text>
-</svg>
+<img
+  src="/assets/cafe-illustration.webp"
+  alt="Catastrophe Cafe illustration"
+  class="cafe-illustration"
+/>
 
 <style>
   .cafe-illustration {
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: cover;
   }
 </style>
