@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'agneepath', code: 'B', title: 'Agneepath', year: '2025', thumb: 2,
-    blurb: 'A 2D platformer built and shipped in roughly 24 hours. Hand-tuned physics, one boss, no regrets.',
+    blurb: 'A 2D platformer built and shipped in roughly 24 hours for the Hack Club Campfire hackathon.',
     tags: [{ label: '24h jam', tone: 'helios' }, { label: '2D', tone: 'quantum' }, { label: 'Shipped', tone: 'signal' }],
     status: 'SHIPPED',
   },
