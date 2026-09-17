@@ -1,7 +1,7 @@
 export default function StatusCapsule() {
   return (
     <div
-      aria-label="Status: Transmitting from Mumbai"
+      aria-label="Status: Transmitting from West Lafayette"
       style={{
         position: 'fixed',
         right: 24,
@@ -35,7 +35,7 @@ export default function StatusCapsule() {
           flexShrink: 0,
         }}
       />
-      Status · Transmitting from Mumbai
+      Status · Transmitting from West Lafayette
     </div>
   );
 }
